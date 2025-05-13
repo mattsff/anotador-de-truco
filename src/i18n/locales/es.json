@@ -1,0 +1,49 @@
+{
+  "app": {
+    "title": "Anotador de Truco"
+  },
+  "scoreboard": {
+    "team1": "Nosotros",
+    "team2": "Ellos",
+    "malas": "Malas",
+    "buenas": "Buenas",
+    "pts": "Puntos"
+  },
+  "teamConfig": {
+    "title": "Configuración de Equipos",
+    "teamName": "Nombre del Equipo",
+    "save": "Guardar"
+  },
+  "history": {
+    "title": "Historial de Puntos",
+    "team": "Equipo",
+    "points": "Puntos",
+    "action": "Acción"
+  },
+  "pointControls": {
+    "add": "Sumar",
+    "subtract": "Restar"
+  },
+  "gameConfig": {
+    "title": "Configuración del Juego",
+    "pointsToWin": "Puntos para ganar",
+    "fifteen": "15 Puntos",
+    "thirty": "30 Puntos"
+  },
+  "confirmationPopup": {
+    "title": "Reiniciar Partida",
+    "message": "¿Estás seguro de que quieres reiniciar la partida?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
+  },
+  "victoryAnimation": {
+    "title": "¡Ganó el Equipo {teamName}!"
+  },
+  "menu": {
+    "scoreboard": "Marcador",
+    "teams": "Equipos",
+    "history": "Historial",
+    "gameConfig": "Configuración",
+    "reset": "Reiniciar"
+  }
+}
