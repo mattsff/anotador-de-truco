@@ -1,79 +1,36 @@
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import { useGameStore } from '@/stores';
 import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config';
 import SticksSection from './SticksSection.vue';
+import { buildGroups } from '@/utils/game';
 
-export default defineComponent({
-  name: 'ScoreSticks',
-  components: { SticksSection },
-  props: {
-    score: {
-      type: Number,
-      required: true,
-    },
-  },
-  setup(props) {
-    const gameStore = useGameStore();
+const props = defineProps<{
+  score: number;
+}>();
 
-    const pointsToWin = computed(() => gameStore.pointsToWin);
+const gameStore = useGameStore();
 
-    const is30Points = computed(() => pointsToWin.value === GAME_POINTS_30);
-    const is15Points = computed(() => pointsToWin.value === GAME_POINTS_15);
+const pointsToWin = computed(() => gameStore.pointsToWin);
 
-    const pointsMalas = computed(() =>
-      is30Points.value ? Math.min(props.score, GAME_POINTS_15) : props.score
-    );
+const is30Points = computed(() => pointsToWin.value === GAME_POINTS_30);
+const is15Points = computed(() => pointsToWin.value === GAME_POINTS_15);
 
-    const pointsBuenas = computed(() =>
-      is30Points.value ? Math.max(props.score - GAME_POINTS_15, 0) : 0
-    );
+const pointsMalas = computed(() =>
+  is30Points.value ? Math.min(props.score, GAME_POINTS_15) : props.score
+);
 
-    const buildGroups = (points: number) => {
-      const totalGroups = Math.floor(points / 5);
-      const remainder = points % 5;
-      const result = [];
-      for (let i = 0; i < Math.min(totalGroups, 3); i++) {
-        result.push(5);
-      }
-      if (totalGroups < 3 && remainder > 0) {
-        result.push(remainder);
-      }
-      return result;
-    };
-
-    return {
-      is30Points,
-      is15Points,
-      pointsMalas,
-      pointsBuenas,
-      buildGroups,
-    };
-  },
-});
+const pointsBuenas = computed(() =>
+  is30Points.value && props.score > GAME_POINTS_15 ? props.score - GAME_POINTS_15 : 0
+);
 </script>
 
 <template>
-  <div >
-    <SticksSection
-      v-if="is30Points"
-      label="Malas"
-      :points="pointsMalas"
-      key-prefix="malas"
-      :build-groups="buildGroups"
-    />
-    <SticksSection
-      v-if="is30Points"
-      label="Buenas"
-      :points="pointsBuenas"
-      key-prefix="buenas"
-      :build-groups="buildGroups"
-    />
-    <SticksSection
-      v-if="is15Points"
-      :points="score"
-      key-prefix="15"
-      :build-groups="buildGroups"
-    />
+  <div>
+    <template v-if="is30Points">
+      <SticksSection label="Malas" :points="pointsMalas" key-prefix="malas" :build-groups="buildGroups" />
+      <SticksSection label="Buenas" :points="pointsBuenas" key-prefix="buenas" :build-groups="buildGroups" />
+    </template>
+    <SticksSection v-else-if="is15Points" :points="score" key-prefix="15" :build-groups="buildGroups" />
   </div>
 </template>

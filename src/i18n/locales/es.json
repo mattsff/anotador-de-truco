@@ -41,6 +41,7 @@
     "title": "¡Ganó el Equipo {teamName}!"
   },
   "menu": {
+    "title": "Menú",
     "scoreboard": "Marcador",
     "teams": "Equipos",
     "history": "Historial",

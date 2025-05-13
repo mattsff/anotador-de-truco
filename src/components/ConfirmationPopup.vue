@@ -1,88 +1,49 @@
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script setup lang="ts">
+import { ref, defineExpose } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { dimensions } from '@/config';
 
-export default defineComponent({
-  name: 'ConfirmationPopup',
-  setup() {
-    const { t } = useI18n();
-    const show = ref(false);
-    const onConfirmCallback = ref<() => void>(() => {});
+const { t } = useI18n();
 
-    const showPopup = (callback: () => void) => {
-      onConfirmCallback.value = callback;
-      show.value = true;
-    };
+const show = ref(false);
+let onConfirmCallback = () => {};
 
-    const confirm = () => {
-      onConfirmCallback.value();
-      show.value = false;
-    };
+const showPopup = (callback: () => void) => {
+  onConfirmCallback = callback;
+  show.value = true;
+};
 
-    const cancel = () => {
-      show.value = false;
-    };
+const confirm = () => {
+  onConfirmCallback();
+  show.value = false;
+};
 
-    return {
-      show,
-      showPopup,
-      confirm,
-      cancel,
-      t,
-      dimensions,
-    };
-  },
-});
+const cancel = () => {
+  show.value = false;
+};
+
+defineExpose({ showPopup });
 </script>
 
 <template>
-  <div v-if="show" class="confirmation-popup">
-    <div class="confirmation-popup__content" :style="{
-        backgroundColor: '#fff',
-        borderRadius: dimensions.borderRadius,
-        padding: dimensions.popupPadding,
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-        width: dimensions.popupWidth,
-        maxWidth: '90%'
-    }">
-      <h2 class="confirmation-popup__title">
-        {{ t('confirmationPopup.title') }}
-      </h2>
-      <p class="confirmation-popup__message">
-        {{ t('confirmationPopup.message') }}
-      </p>
-      <div class="confirmation-popup__buttons">
-        <button
-          @click="confirm"
-          class="confirmation-popup__button confirmation-popup__confirm"
-          :style="{
-            color: '#fff',
-            borderRadius: dimensions.borderRadius,
-            padding: dimensions.buttonPadding,
-            marginRight: dimensions.buttonMargin,
-      
-          }"
-        >
-          {{ t('confirmationPopup.confirm') }}
-        </button>
-        <button
-          @click="cancel"
-          class="confirmation-popup__button confirmation-popup__cancel"
-          :style="{
-            color: '#fff',
-            borderRadius: dimensions.borderRadius,
-            padding: dimensions.buttonPadding,
-          }"
-        >
-          {{ t('confirmationPopup.cancel') }}
-        </button>
+  <transition name="fade">
+    <div v-if="show" class="confirmation-popup" role="dialog" aria-modal="true" aria-label="Confirmation popup">
+      <div class="confirmation-popup__content">
+        <h2 class="confirmation-popup__title">{{ t('confirmationPopup.title') }}</h2>
+        <p class="confirmation-popup__message">{{ t('confirmationPopup.message') }}</p>
+        <div class="confirmation-popup__buttons">
+          <button @click="confirm" class="confirmation-popup__button confirmation-popup__confirm">
+            {{ t('confirmationPopup.confirm') }}
+          </button>
+          <button @click="cancel" class="confirmation-popup__button confirmation-popup__cancel">
+            {{ t('confirmationPopup.cancel') }}
+          </button>
+        </div>
       </div>
     </div>
-  </div>
+  </transition>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .confirmation-popup {
   position: fixed;
   top: 0;
@@ -93,58 +54,77 @@ export default defineComponent({
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
-  z-index: 10;
+  z-index: 1000;
+
   &__content {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px;
-    border-radius: 10px;
-    background-color: #fff;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-    width: 90%;
-    max-width: 400px;
+    padding: var(--popup-padding, 2rem);
+    border-radius: var(--border-radius, 12px);
+    background-color: var(--color-surface, #fff);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: var(--popup-width, 320px);
+    max-width: 90%;
   }
+
   &__title {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: bold;
-    margin-bottom: 20px;
-    color: v(--title-color);
+    margin-bottom: 1rem;
+    color: var(--title-color, #333);
   }
+
   &__message {
-    font-size: 18px;
-    margin-bottom: 20px;
-    color: v(--text-color);
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-color, #555);
   }
+
   &__buttons {
     display: flex;
-    justify-content: center;
     width: 100%;
+    gap: 1rem;
+    flex-wrap: wrap;
+    justify-content: center;
   }
+
   &__button {
-    padding: 10px 20px;
-    color: white;
+    flex: 1 1 40%;
+    padding: var(--button-padding, 0.75rem 1.5rem);
     border: none;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: var(--button-border-radius, 8px);
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin: 0 10px;
-    flex: 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    color: var(--on-primary, #fff);
     text-align: center;
   }
+
   &__confirm {
-    background-color: v(--danger);
+    background-color: var(--danger, #e53935);
+
     &:hover {
-      background-color: v(--danger-hover);
+      background-color: var(--danger-hover, #b71c1c);
     }
   }
+
   &__cancel {
-    background-color: v(--secondary);
+    background-color: var(--secondary, #757575);
+
     &:hover {
-      background-color: v(--secondary-hover);
+      background-color: var(--secondary-hover, #424242);
     }
   }
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

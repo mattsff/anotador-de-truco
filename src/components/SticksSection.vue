@@ -22,7 +22,11 @@ export default defineComponent({
     },
   },
   setup(props) {
-    const groups = computed(() => props.buildGroups(props.points));
+    const groups = computed(() => {
+      const safePoints = Math.max(props.points, 0);
+      return props.buildGroups(safePoints);
+    });
+
     return {
       groups,
     };
@@ -33,8 +37,17 @@ export default defineComponent({
 <template>
   <div class="score-sticks__section">
     <div v-if="label" class="score-sticks__label">{{ label }}</div>
-    <div v-for="(sticks, index) in groups" :key="keyPrefix + '-' + index" class="group">
-      <div v-for="n in sticks" :key="n" class="stick-image" :class="'pos-' + n"></div>
+    <div
+      v-for="(sticks, groupIndex) in groups"
+      :key="`${keyPrefix}-group-${groupIndex}`"
+      class="group"
+    >
+      <div
+        v-for="n in sticks"
+        :key="`${keyPrefix}-stick-${groupIndex}-${n}`"
+        class="stick-image"
+        :class="'pos-' + n"
+      ></div>
     </div>
   </div>
 </template>
@@ -43,8 +56,10 @@ export default defineComponent({
 .score-sticks__section {
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 20px;
   min-height: 270px;
+  min-width: 140px;
 }
 
 .score-sticks__label {

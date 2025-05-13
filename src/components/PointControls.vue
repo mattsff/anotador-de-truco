@@ -1,105 +1,106 @@
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
-import { useTeamsStore, useGameStore,useHistoryStore } from '@/stores';
+<script setup lang="ts">
+import { useTeamsStore, useGameStore, useHistoryStore } from '@/stores';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { dimensions } from '@/config';
 
-export default defineComponent({
-  name: 'PointControls',
-  setup() {
-    const teamsStore = useTeamsStore();
-    const gameStore = useGameStore();
-    const historyStore = useHistoryStore();
-    const { t } = useI18n();
+const props = defineProps<{
+  teamNumber: 1 | 2;
+}>();
 
-    const team1Name = computed(() => teamsStore.team1Name);
-    const team2Name = computed(() => teamsStore.team2Name);
+const teamsStore = useTeamsStore();
+const gameStore = useGameStore();
+const historyStore = useHistoryStore();
+const { t } = useI18n();
 
-    const addPoints = (team: 1 | 2) => {
-      const points = 1;
-        if (team === 1) {
-          teamsStore.incrementTeam1Score(points);
-        } else {
-          teamsStore.incrementTeam2Score(points);
-        }
-        historyStore.logPointChange({
-          team: team === 1 ? team1Name.value : team2Name.value,
-          points,
-          action: 'sumar',
-        });
-        gameStore.checkWinCondition();
-    };
+const teamName = computed(() =>
+  props.teamNumber === 1 ? teamsStore.team1Name : teamsStore.team2Name
+);
 
-    const subtractPoints = (team: 1 | 2) => {
-      const points = 1;
-        if (team === 1) {
-          teamsStore.decrementTeam1Score(points);
-        } else {
-          teamsStore.decrementTeam2Score(points);
-        }
-        historyStore.logPointChange({
-          team: team === 1 ? team1Name.value : team2Name.value,
-          points: -points,
-          action: 'restar',
-        });
-      
-    };
+const addPoints = () => {
+  const points = 1;
+  if (props.teamNumber === 1) {
+    teamsStore.incrementTeam1Score(points);
+  } else {
+    teamsStore.incrementTeam2Score(points);
+  }
+  historyStore.logPointChange({
+    team: teamName.value,
+    points,
+    action: 'sumar',
+  });
+  gameStore.checkWinCondition();
+};
 
-    return {
-      team1Name,
-      team2Name,
-      addPoints,
-      subtractPoints,
-      t,
-      dimensions,
-    };
-  },
-});
+const subtractPoints = () => {
+  const points = 1;
+  if (props.teamNumber === 1) {
+    teamsStore.decrementTeam1Score(points);
+  } else {
+    teamsStore.decrementTeam2Score(points);
+  }
+  historyStore.logPointChange({
+    team: teamName.value,
+    points: -points,
+    action: 'restar',
+  });
+};
 </script>
 
 <template>
   <div class="point-controls">
-    <div class="point-controls__buttons">
-      <div class="point-controls__team-buttons">
-        <button
-          @click="subtractPoints(1)"
-          class="point-controls__subtract"
-        >
-          {{ t('pointControls.subtract') }}
-        </button>
-        <button
-          @click="addPoints(1)"
-          class="point-controls__add"
-        >
-          {{ t('pointControls.add') }}
-        </button>
-      </div>
-    </div>
+    <button
+      @click="subtractPoints"
+      class="point-controls__button point-controls__button--subtract"
+      :aria-label="t('pointControls.subtract') + ' ' + teamName"
+      :title="t('pointControls.subtract') + ' ' + teamName"
+    >
+      {{ t('pointControls.subtract') }}
+    </button>
+    <button
+      @click="addPoints"
+      class="point-controls__button point-controls__button--add"
+      :aria-label="t('pointControls.add') + ' ' + teamName"
+      :title="t('pointControls.add') + ' ' + teamName"
+    >
+      {{ t('pointControls.add') }}
+    </button>
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .point-controls {
-  flex-direction: row;
-  align-items: center;
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  width: 90%;
-  &__add {
-    color: white;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+
+  &__button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
     font-size: 16px;
-    background-color: v(--success);
-    &:hover {
-      background-color: v(--success-hover);
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    color: white;
+
+    &:active {
+      transform: scale(0.95);
     }
-  }
-  &__subtract {
-    color: white;
-    font-size: 16px;
-    background-color: v(--danger);
-    &:hover {
-      background-color: v(--danger-hover);
+
+    &--add {
+      background-color: var(--color-success, #4caf50);
+
+      &:hover {
+        background-color: var(--color-success-hover, #43a047);
+      }
+    }
+
+    &--subtract {
+      background-color: var(--color-danger, #e5393577);
+
+      &:hover {
+        background-color: var(--color-danger-hover, #d32f2f);
+      }
     }
   }
 }

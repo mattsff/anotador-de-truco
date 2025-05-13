@@ -1,68 +1,66 @@
-<script lang="ts">
-import { defineComponent, ref, onMounted } from 'vue';
+<script setup lang="ts">
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
-import {  dimensions } from '@/config';
 
-export default defineComponent({
-  name: 'VictoryAnimation',
-  props: {
-    winningTeam: {
-      type: String,
-      required: true,
-    },
-  },
-  setup(props) {
-    const { t } = useI18n();
-    const animationText = ref('');
+const props = defineProps<{
+  winningTeam: string;
+}>();
 
-    onMounted(() => {
-      animationText.value = t('victoryAnimation.title', { teamName: props.winningTeam });
-    });
+const { t } = useI18n();
 
-    return {
-      animationText,
-      dimensions
-    };
-  },
-});
+const animationText = computed(() =>
+  t('victoryAnimation.title', { teamName: props.winningTeam })
+);
 </script>
 
 <template>
-  <div class="victory-animation">
+  <div class="victory-animation" role="alert" aria-live="assertive">
     <h2 class="victory-animation__title">
       {{ animationText }}
     </h2>
-    </div>
+  </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .victory-animation {
   display: flex;
   align-items: center;
   justify-content: center;
+  text-align: center;
   width: 100%;
   height: 100vh;
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.8);
   z-index: 100;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
+  backdrop-filter: blur(3px);
+
   &__title {
-    font-size: 36px;
-    font-weight: bold;
-    animation: pulse 2s infinite;
-    color: v(--success);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--success, #4caf50);
+    animation: pulse 1.8s ease-in-out infinite;
+    padding: 1rem 2rem;
+    border: 4px solid var(--success, #4caf50);
+    border-radius: 16px;
+    box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
+    background-color: rgba(255, 255, 255, 0.05);
   }
-  @keyframes pulse {
-    0% {
-      transform: scale(1);
-    }
-    50% {
-      transform: scale(1.1);
-    }
-    100% {
-      transform: scale(1);
-    }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
   }
 }
 </style>

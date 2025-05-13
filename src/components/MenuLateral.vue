@@ -1,129 +1,117 @@
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup lang="ts">
 import { useI18n } from 'vue-i18n';
 
-export default defineComponent({
-  name: 'MenuLateral',
-  props: {
-    onClose: {
-      type: Function,
-      required: true,
-    },
-  },
-  setup({onClose}) {
-    const { t } = useI18n();
+const props = defineProps<{
+  onClose: () => void;
+}>();
 
-    return {
-      close: onClose,
-      t,
-    };
-  },
-});
+const { t } = useI18n();
+const menuItems = [
+  { to: '/', label: t('menu.scoreboard') },
+  { to: '/teams', label: t('menu.teams') },
+  { to: '/history', label: t('menu.history') },
+  { to: '/game-config', label: t('menu.gameConfig') },
+];
+
 </script>
 
 <template>
-  <div class="menu-lateral">
+  <aside class="menu-lateral" role="dialog" aria-label="Main menu">
     <div class="menu-lateral__header">
-      <button class="menu-lateral__close-button" @click="close()">
+      <button
+        class="menu-lateral__close-button"
+        @click="props.onClose"
+        aria-label="Close menu"
+      >
         ×
       </button>
-      <h2 class="menu-lateral__title">Menú</h2>
+      <h2 class="menu-lateral__title">{{ t('menu.title') }}</h2>
     </div>
-    <ul class="menu-lateral__list">
-      <li class="menu-lateral__item">
-        <router-link
-          to="/"
-          @click="close()"
-          class="menu-lateral__link"
-        >
-          {{ t('menu.scoreboard') }}
-        </router-link>
-      </li>
-      <li class="menu-lateral__item">
-        <router-link
-          to="/teams"
-          @click="close()"
-          class="menu-lateral__link"
-        >
-          {{ t('menu.teams') }}
-        </router-link>
-      </li>
-      <li class="menu-lateral__item">
-        <router-link
-          to="/history"
-          @click="close()"
-          class="menu-lateral__link"
-        >
-          {{ t('menu.history') }}
-        </router-link>
-      </li>
-      <li class="menu-lateral__item">
-        <router-link
-          to="/game-config"
-          @click="close()"
-          class="menu-lateral__link"
-        >
-          {{ t('menu.gameConfig') }}
-        </router-link>
-      </li>
-    </ul>
-  </div>
+    <nav class="menu-lateral__nav">
+      <ul class="menu-lateral__list">
+        <li v-for="item in menuItems" :key="item.to" class="menu-lateral__item">
+          <router-link
+            :to="item.to"
+            @click="props.onClose"
+            class="menu-lateral__link"
+          >
+            {{ item.label }}
+          </router-link>
+        </li>
+      </ul>
+    </nav>
+  </aside>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .menu-lateral {
   position: fixed;
   top: 0;
   right: 0;
   height: 100%;
-  background-color: var(--white);
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-  z-index: 100;
-  transition: transform 0.3s ease-in-out;
-  transform: translateX(0);
   width: 250px;
+  background-color: var(--color-surface, #fff);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  transform: translateX(0);
+  transition: transform 0.3s ease-in-out;
+
   &__header {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color: var(--primary);
-    color: var(--white);
+    padding: 1rem;
+    background-color: var(--color-primary, #1c1c2b);
+    color: var(--color-on-primary, #fff);
   }
+
   &__close-button {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    padding: 5px;
     margin-right: 10px;
-    color: var(--white);
-  }
-  &__title {
-    font-size: 20px;
-    font-weight: bold;
-    margin: 0;
-    color: var(--white);
-  }
-  &__list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-  }
-  &__item {
-    padding: 10px 20px;
-    border-bottom: 1px solid #eee;
-    &:last-child {
-      border-bottom: none;
+    color: inherit;
+
+    &:hover {
+      color: var(--color-accent, #ff9800);
     }
   }
+
+  &__title {
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin: 0;
+  }
+
+  &__nav {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  &__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  &__item {
+    border-bottom: 1px solid #eee;
+  }
+
   &__link {
-    text-decoration: none;
-    color: var(--text-color);
-    font-size: 16px;
     display: block;
-    transition: color 0.2s ease;
-    &:hover {
-      color: var(--primary);
+    padding: 1rem;
+    font-size: 1rem;
+    text-decoration: none;
+    color: var(--color-text, #333);
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover,
+    &:focus {
+      background-color: var(--color-primary, #1c1c2b);
+      color: var(--color-on-primary, #fff);
       font-weight: bold;
     }
   }

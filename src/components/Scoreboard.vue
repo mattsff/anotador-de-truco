@@ -4,6 +4,7 @@ import { useTeamsStore } from '@/stores';
 import { useI18n } from 'vue-i18n';
 import ScoreSticks from '@/components/ScoreSticks.vue';
 import PointControls from '@/components/PointControls.vue';
+import { storeToRefs } from 'pinia';
 
 export default defineComponent({
   name: 'Scoreboard',
@@ -12,22 +13,14 @@ export default defineComponent({
     PointControls,
   },
   setup() {
-    const teamsStore = useTeamsStore();
-    const { t } = useI18n();
-
-    const team1 = computed(() => ({
-      name: teamsStore.team1Name,
-      score: teamsStore.team1Score,
-    }));
-    const team2 = computed(() => ({
-      name: teamsStore.team2Name,
-      score: teamsStore.team2Score,
-    }));
+   const teamsStore = useTeamsStore();
+   const { team1Name, team1Score, team2Name, team2Score } = storeToRefs(teamsStore);
 
     return {
-      team1,
-      team2,
-      t,
+      team1Name,
+      team2Name,
+      team1Score,
+      team2Score,
       teamsStore,
     };
   },
@@ -38,14 +31,14 @@ export default defineComponent({
   <div class="scoreboard">
     <div class="scoreboard__teams">
       <div class="scoreboard__team">
-        <div class="scoreboard__team-name">{{ team1.name }} ({{ team1.score }})</div>
-        <ScoreSticks :score="team1.score" />
+        <div class="scoreboard__team-name">{{ team1Name }} ({{ team1Score }})</div>
+        <ScoreSticks :score="team1Score" />
         <PointControls :teamNumber="1" />
       </div>
 
       <div class="scoreboard__team">
-        <div class="scoreboard__team-name">{{ team2.name }} ({{ team2.score }})</div>
-        <ScoreSticks :score="team2.score" />
+        <div class="scoreboard__team-name">{{ team2Name }} ({{ team2Score }})</div>
+        <ScoreSticks :score="team2Score" />
         <PointControls :teamNumber="2" />
       </div>
     </div>
