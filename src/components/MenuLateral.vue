@@ -5,15 +5,16 @@ import { useI18n } from 'vue-i18n';
 export default defineComponent({
   name: 'MenuLateral',
   props: {
-    close: {
+    onClose: {
       type: Function,
       required: true,
     },
   },
-  setup() {
+  setup({onClose}) {
     const { t } = useI18n();
 
     return {
+      close: onClose,
       t,
     };
   },

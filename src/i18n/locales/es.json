@@ -3,6 +3,7 @@
     "title": "Anotador de Truco"
   },
   "scoreboard": {
+    "title": "Puntos",
     "team1": "Nosotros",
     "team2": "Ellos",
     "malas": "Malas",
@@ -21,8 +22,8 @@
     "action": "Acción"
   },
   "pointControls": {
-    "add": "Sumar",
-    "subtract": "Restar"
+    "add": "+",
+    "subtract": "-"
   },
   "gameConfig": {
     "title": "Configuración del Juego",
