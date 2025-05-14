@@ -19,7 +19,8 @@
     "title": "Historial de Puntos",
     "team": "Equipo",
     "points": "Puntos",
-    "action": "Acción"
+    "action": "Acción",
+    "emptyMessage": "Aún no hay historial para mostrar"
   },
   "pointControls": {
     "add": "+",
@@ -38,7 +39,9 @@
     "cancel": "Cancelar"
   },
   "victoryAnimation": {
-    "title": "¡Ganó el Equipo {teamName}!"
+    "title": "¡Ganó el Equipo {teamName}!",
+    "newGame": "Nuevo partido",
+    "cancelWin": "Volver"
   },
   "menu": {
     "title": "Menú",

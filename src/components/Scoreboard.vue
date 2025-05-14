@@ -1,30 +1,29 @@
-<script lang="ts">
-import { defineComponent, computed } from 'vue';
-import { useTeamsStore } from '@/stores';
-import { useI18n } from 'vue-i18n';
-import ScoreSticks from '@/components/ScoreSticks.vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
+import { useTeamsStore, useGameStore } from '@/stores';
+import SticksSection from '@/components/SticksSection.vue';
 import PointControls from '@/components/PointControls.vue';
+import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config';
 import { storeToRefs } from 'pinia';
 
-export default defineComponent({
-  name: 'Scoreboard',
-  components: {
-    ScoreSticks,
-    PointControls,
-  },
-  setup() {
-   const teamsStore = useTeamsStore();
-   const { team1Name, team1Score, team2Name, team2Score } = storeToRefs(teamsStore);
+const teamsStore = useTeamsStore();
+const gameStore = useGameStore();
+const { team1Name, team2Name } = storeToRefs(teamsStore);
+const { team1Score, team2Score } = storeToRefs(gameStore);
 
-    return {
-      team1Name,
-      team2Name,
-      team1Score,
-      team2Score,
-      teamsStore,
-    };
-  },
-});
+const pointsToWin = computed(() => gameStore.pointsToWin);
+
+const getDisplayData = (score: number) => {
+  if (pointsToWin.value === GAME_POINTS_15) {
+    return { label: null, points: score, labelColor: undefined };
+  }
+
+  if (score <= GAME_POINTS_15) {
+    return { label: 'Malas', points: score, labelColor: 'red' };
+  }
+
+  return { label: 'Buenas', points: score - GAME_POINTS_15, labelColor: 'green' };
+};
 </script>
 
 <template>
@@ -32,17 +31,24 @@ export default defineComponent({
     <div class="scoreboard__teams">
       <div class="scoreboard__team">
         <div class="scoreboard__team-name">{{ team1Name }} ({{ team1Score }})</div>
-        <ScoreSticks :score="team1Score" />
+        <SticksSection
+          :label="getDisplayData(team1Score).label"
+          :points="getDisplayData(team1Score).points"
+          :label-color="getDisplayData(team1Score).labelColor"
+        />
         <PointControls :teamNumber="1" />
       </div>
 
       <div class="scoreboard__team">
         <div class="scoreboard__team-name">{{ team2Name }} ({{ team2Score }})</div>
-        <ScoreSticks :score="team2Score" />
+        <SticksSection
+          :label="getDisplayData(team2Score).label"
+          :points="getDisplayData(team2Score).points"
+          :label-color="getDisplayData(team2Score).labelColor"
+        />
         <PointControls :teamNumber="2" />
       </div>
     </div>
-
   </div>
 </template>
 

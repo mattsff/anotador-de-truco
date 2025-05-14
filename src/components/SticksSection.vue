@@ -1,50 +1,28 @@
-<script lang="ts">
-import { defineComponent, PropType, computed } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
+import { buildGroups } from '@/utils/game';
 
-export default defineComponent({
-  name: 'SticksSection',
-  props: {
-    label: {
-      type: String,
-      default: '',
-    },
-    points: {
-      type: Number,
-      required: true,
-    },
-    keyPrefix: {
-      type: String,
-      required: true,
-    },
-    buildGroups: {
-      type: Function as PropType<(points: number) => number[]>,
-      required: true,
-    },
-  },
-  setup(props) {
-    const groups = computed(() => {
-      const safePoints = Math.max(props.points, 0);
-      return props.buildGroups(safePoints);
-    });
+const props = defineProps<{
+  points: number;
+  label?: string | null;
+  labelColor?: string;
+}>();
 
-    return {
-      groups,
-    };
-  },
+const groups = computed(() => {
+  const safePoints = Math.max(props.points, 0);
+  return buildGroups(safePoints);
 });
 </script>
 
 <template>
-  <div class="score-sticks__section">
-    <div v-if="label" class="score-sticks__label">{{ label }}</div>
-    <div
-      v-for="(sticks, groupIndex) in groups"
-      :key="`${keyPrefix}-group-${groupIndex}`"
-      class="group"
-    >
+  <div class="sticks-section">
+    <div v-if="label" class="sticks-section__label" :style="{ color: labelColor ?? '#ddd' }">
+      {{ label }}
+    </div>
+    <div v-for="(sticks, groupIndex) in groups" :key="`group-${groupIndex}`" class="group">
       <div
         v-for="n in sticks"
-        :key="`${keyPrefix}-stick-${groupIndex}-${n}`"
+        :key="`stick-${groupIndex}-${n}`"
         class="stick-image"
         :class="'pos-' + n"
       ></div>
@@ -53,20 +31,19 @@ export default defineComponent({
 </template>
 
 <style scoped>
-.score-sticks__section {
+.sticks-section {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  min-height: 270px;
+  min-height: 320px;
   min-width: 140px;
 }
 
-.score-sticks__label {
+.sticks-section__label {
   font-weight: bold;
   font-size: 14px;
   text-align: center;
-  color: #ddd;
 }
 
 .group {

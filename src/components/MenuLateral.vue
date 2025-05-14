@@ -12,7 +12,6 @@ const menuItems = [
   { to: '/history', label: t('menu.history') },
   { to: '/game-config', label: t('menu.gameConfig') },
 ];
-
 </script>
 
 <template>

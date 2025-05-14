@@ -1,48 +1,28 @@
 <script setup lang="ts">
-import { useTeamsStore, useGameStore, useHistoryStore } from '@/stores';
-import { computed } from 'vue';
+import {  useGameStore } from '@/stores';
 import { useI18n } from 'vue-i18n';
 
 const props = defineProps<{
   teamNumber: 1 | 2;
 }>();
 
-const teamsStore = useTeamsStore();
 const gameStore = useGameStore();
-const historyStore = useHistoryStore();
 const { t } = useI18n();
 
-const teamName = computed(() =>
-  props.teamNumber === 1 ? teamsStore.team1Name : teamsStore.team2Name
-);
-
 const addPoints = () => {
-  const points = 1;
   if (props.teamNumber === 1) {
-    teamsStore.incrementTeam1Score(points);
+    gameStore.incrementTeam1Score();
   } else {
-    teamsStore.incrementTeam2Score(points);
+    gameStore.incrementTeam2Score();
   }
-  historyStore.logPointChange({
-    team: teamName.value,
-    points,
-    action: 'sumar',
-  });
-  gameStore.checkWinCondition();
 };
 
 const subtractPoints = () => {
-  const points = 1;
   if (props.teamNumber === 1) {
-    teamsStore.decrementTeam1Score(points);
+    gameStore.decrementTeam1Score();
   } else {
-    teamsStore.decrementTeam2Score(points);
+    gameStore.decrementTeam2Score();
   }
-  historyStore.logPointChange({
-    team: teamName.value,
-    points: -points,
-    action: 'restar',
-  });
 };
 </script>
 
@@ -51,16 +31,13 @@ const subtractPoints = () => {
     <button
       @click="subtractPoints"
       class="point-controls__button point-controls__button--subtract"
-      :aria-label="t('pointControls.subtract') + ' ' + teamName"
-      :title="t('pointControls.subtract') + ' ' + teamName"
+  
     >
       {{ t('pointControls.subtract') }}
     </button>
     <button
       @click="addPoints"
       class="point-controls__button point-controls__button--add"
-      :aria-label="t('pointControls.add') + ' ' + teamName"
-      :title="t('pointControls.add') + ' ' + teamName"
     >
       {{ t('pointControls.add') }}
     </button>

@@ -1,12 +1,14 @@
-import { defineStore } from 'pinia';
-import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config';
-import { useTeamsStore, useHistoryStore } from '@/stores';
+import { defineStore } from 'pinia'
+import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config'
+import { useTeamsStore, useHistoryStore } from '@/stores'
 
 interface GameState {
-  pointsToWin: number;
-  isMalas: boolean;
-  gameEnded: boolean;
-  winningTeam: string | null;
+  pointsToWin: number
+  isMalas: boolean
+  gameEnded: boolean
+  winningTeam: string | null
+  team1Score: number
+  team2Score: number
 }
 
 export const useGameStore = defineStore('game', {
@@ -15,48 +17,97 @@ export const useGameStore = defineStore('game', {
     isMalas: true,
     gameEnded: false,
     winningTeam: null,
+    team1Score: 0,
+    team2Score: 0,
   }),
   actions: {
+    incrementTeam1Score(points: number = 1) {
+      if (this.gameEnded) return
+      if (this.team1Score + points <= this.pointsToWin) {
+        this.team1Score += points
+        const teamsStore = useTeamsStore()
+        const historyStore = useHistoryStore()
+        historyStore.logPointChange({
+          team: teamsStore.team1Name,
+          points,
+          action: 'sumar',
+        })
+        this.checkWinCondition()
+      }
+    },
+    incrementTeam2Score(points: number = 1) {
+      if (this.gameEnded) return
+      if (this.team2Score + points <= this.pointsToWin) {
+        this.team2Score += points
+        const teamsStore = useTeamsStore()
+        const historyStore = useHistoryStore()
+        historyStore.logPointChange({
+          team: teamsStore.team2Name,
+          points,
+          action: 'sumar',
+        })
+        this.checkWinCondition()
+      }
+    },
+    decrementTeam1Score(points: number = 1) {
+      this.team1Score = Math.max(0, this.team1Score - points)
+      const teamsStore = useTeamsStore()
+      const historyStore = useHistoryStore()
+      historyStore.logPointChange({
+        team: teamsStore.team1Name,
+        points: -points,
+        action: 'restar',
+      })
+    },
+    decrementTeam2Score(points: number = 1) {
+      this.team2Score = Math.max(0, this.team2Score - points)
+      const teamsStore = useTeamsStore()
+      const historyStore = useHistoryStore()
+      historyStore.logPointChange({
+        team: teamsStore.team2Name,
+        points: -points,
+        action: 'restar',
+      })
+    },
     setPointsToWin(points: number) {
-      this.pointsToWin = points;
-      this.isMalas = true; // Reset to malas when changing pointsToWin
-      this.gameEnded = false;
-      this.winningTeam = null;
+      this.pointsToWin = points
+      this.resetGame()
     },
     toggleMalas() {
-      this.isMalas = !this.isMalas;
-    },
-    setGameEnded(ended: boolean) {
-      this.gameEnded = ended;
-    },
-    setWinningTeam(team: string | null) {
-      this.winningTeam = team;
+      this.isMalas = !this.isMalas
     },
     checkWinCondition() {
-      const teamsStore = useTeamsStore();
+      const teamsStore = useTeamsStore()
       if (
-        teamsStore.team1Score >= this.pointsToWin ||
-        teamsStore.team2Score >= this.pointsToWin
+        this.team1Score >= this.pointsToWin ||
+        this.team2Score >= this.pointsToWin
       ) {
-        this.setGameEnded(true);
-        this.setWinningTeam(
-          teamsStore.team1Score > teamsStore.team2Score
+        this.gameEnded = true
+        this.winningTeam =
+          this.team1Score > this.team2Score
             ? teamsStore.team1Name
             : teamsStore.team2Name
-        );
-      } else if (this.pointsToWin === GAME_POINTS_30 && this.isMalas && teamsStore.team1Score >= 15 && teamsStore.team2Score >= 15) {
-        this.toggleMalas(); 
+      } else if (
+        this.pointsToWin === GAME_POINTS_30 &&
+        this.isMalas &&
+        this.team1Score >= 15 &&
+        this.team2Score >= 15
+      ) {
+        this.toggleMalas()
       }
     },
     resetGame() {
-      this.pointsToWin = GAME_POINTS_15;
-      this.isMalas = true;
-      this.gameEnded = false;
-      this.winningTeam = null;
-      const teamsStore = useTeamsStore();
-      const historyStore = useHistoryStore();
-      teamsStore.resetScores();
-      historyStore.resetHistory();
+      this.isMalas = true
+      this.gameEnded = false
+      this.winningTeam = null
+      this.team1Score = 0
+      this.team2Score = 0
+      const historyStore = useHistoryStore()
+      historyStore.resetHistory()
+    },
+    cancelWin() {
+      this.gameEnded = false
+      this.winningTeam = null
     },
   },
-});
+})

@@ -5,11 +5,13 @@ import { useGameStore } from '@/stores';
 import {  dimensions } from '@/config';
 import ConfirmationPopup from '@/components/ConfirmationPopup.vue';
 import MenuLateral from '@/components/MenuLateral.vue';
+import VictoryAnimation from '@/components/VictoryAnimation.vue';
 
 export default defineComponent({
   name: 'MainLayout',
   components: {
     ConfirmationPopup,
+    VictoryAnimation,
     MenuLateral,
   },
   setup() {
@@ -49,7 +51,7 @@ export default defineComponent({
       <button class="main-layout__menu-button" @click="isMenuOpen = true" :style="{ color: '#fff' }">
         ☰
       </button>
-      <h1 class="main-layout__title" :style="{ color: '#fff' }">{{ t('app.title') }}</h1>
+      <h1 class="main-layout__title">{{ t('app.title') }}</h1>
     </header>
 
     <MenuLateral
@@ -64,24 +66,28 @@ export default defineComponent({
 
     <main class="main-layout__content">
       <slot />
-      <VictoryAnimation v-if="gameStore.gameEnded" :winningTeam="gameStore.winningTeam" />
-    </main>
-
-    <footer class="main-layout__footer">
-      <button
+       <button
         class="main-layout__reset-button"
         @click="showResetConfirmation"
-        :style="{
-          color: '#fff',
-          borderRadius: dimensions.borderRadius,
-          padding: dimensions.buttonPadding
-        }"
       >
         {{ t('menu.reset') }}
       </button>
-    </footer>
+      
+      <ConfirmationPopup ref="confirmationPopupRef" />
+      <VictoryAnimation v-if="gameStore.gameEnded" :winningTeam="gameStore.winningTeam" />
+    </main>
 
-    <ConfirmationPopup ref="confirmationPopupRef" />
+    <footer class="app-footer">
+      <span>Desarrollado por 
+        <a href="https://www.linkedin.com/in/matias-sieff/" target="_blank" rel="noopener" aria-label="LinkedIn">
+        Matías Sieff
+      </a>
+      </span>
+      |
+      <a href="https://github.com/mattsff" target="_blank" rel="noopener" aria-label="GitHub">
+        GitHub
+      </a>
+    </footer>
   </div>
 </template>
 
@@ -93,7 +99,6 @@ export default defineComponent({
   &__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     padding: 10px 20px;
     color: white;
   }
@@ -107,7 +112,7 @@ export default defineComponent({
   &__title {
     font-size: 20px;
     font-weight: bold;
-    margin: 0;
+    margin: 0px 10px;
   }
   &__content {
     flex: 1;
@@ -123,6 +128,7 @@ export default defineComponent({
     padding: 10px 20px;
   }
   &__reset-button {
+    margin-top: 20px;
     padding: 10px 20px;
     background-color: #e74c3c;
     color: white;

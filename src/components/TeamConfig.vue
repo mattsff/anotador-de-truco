@@ -21,8 +21,6 @@ const handleSaveNames = () => {
 
     <form class="team-config__form" @submit.prevent="handleSaveNames">
       <fieldset class="team-config__fieldset">
-        <legend class="team-config__legend">{{ t('teamConfig.teams') }}</legend>
-
         <div class="team-config__input-group">
           <label for="team1-name" class="team-config__label">{{ t('teamConfig.teamName') }} 1:</label>
           <input
@@ -105,7 +103,6 @@ const handleSaveNames = () => {
     border: 1px solid var(--border-color, #ccc);
     border-radius: var(--border-radius, 8px);
     font-size: 1rem;
-    width: 100%;
   }
 
   &__save-button {
