@@ -28,14 +28,14 @@ defineExpose({ showPopup });
   <transition name="fade">
     <div v-if="show" class="confirmation-popup" role="dialog" aria-modal="true" aria-label="Confirmation popup">
       <div class="confirmation-popup__content">
-        <h2 class="confirmation-popup__title">{{ t('confirmationPopup.title') }}</h2>
-        <p class="confirmation-popup__message">{{ t('confirmationPopup.message') }}</p>
+        <h2 class="confirmation-popup__title">{{ t('confirmResetPopup.title') }}</h2>
+        <p class="confirmation-popup__message">{{ t('confirmResetPopup.message') }}</p>
         <div class="confirmation-popup__buttons">
           <button @click="confirm" class="confirmation-popup__button confirmation-popup__confirm">
-            {{ t('confirmationPopup.confirm') }}
+            {{ t('confirmResetPopup.confirm') }}
           </button>
           <button @click="cancel" class="confirmation-popup__button confirmation-popup__cancel">
-            {{ t('confirmationPopup.cancel') }}
+            {{ t('confirmResetPopup.cancel') }}
           </button>
         </div>
       </div>

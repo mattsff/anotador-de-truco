@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useI18n } from 'vue-i18n'
-import ConfirmationPopup from '@/components/ConfirmationPopup.vue'
+import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue'
 
 const props = defineProps<{
   onClose: () => void
@@ -16,10 +16,10 @@ const menuItems = [
   { to: '/game-config', label: t('menu.gameConfig') },
 ]
 
-const confirmationPopupRef = ref<InstanceType<typeof ConfirmationPopup> | null>(null);
+const confirmResetPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
 
 const showResetConfirmation = () => {
-  confirmationPopupRef.value?.showPopup();
+  confirmResetPopupRef.value?.showPopup();
   props.onClose();
 };
 </script>
@@ -61,7 +61,7 @@ const showResetConfirmation = () => {
   </div>
 
 
-<ConfirmationPopup ref="confirmationPopupRef" />
+<ConfirmResetPopup ref="confirmResetPopupRef" />
 </template>
 
 <style scoped lang="scss">

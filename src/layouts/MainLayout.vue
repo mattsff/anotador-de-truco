@@ -2,18 +2,18 @@
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useGameStore } from '@/stores';
-import ConfirmationPopup from '@/components/ConfirmationPopup.vue';
+import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue';
 import MenuLateral from '@/components/MenuLateral.vue';
 import VictoryAnimation from '@/components/VictoryAnimation.vue';
 
 const gameStore = useGameStore();
 const { t } = useI18n();
 
-const confirmationPopupRef = ref<InstanceType<typeof ConfirmationPopup> | null>(null);
+const confirmResetPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
 const isMenuOpen = ref(false);
 
 const showResetConfirmation = () => {
-  confirmationPopupRef.value?.showPopup(() => {
+  confirmResetPopupRef.value?.showPopup(() => {
     gameStore.resetGame();
     isMenuOpen.value = false;
   });
@@ -79,7 +79,7 @@ const closeMenu = () => {
       </footer>
     </div>
 
-    <ConfirmationPopup ref="confirmationPopupRef" />
+    <ConfirmResetPopup ref="confirmResetPopupRef" />
   </div>
 </template>
 

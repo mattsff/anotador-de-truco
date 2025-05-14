@@ -32,7 +32,7 @@
     "fifteen": "15 Puntos",
     "thirty": "30 Puntos"
   },
-  "confirmationPopup": {
+  "confirmResetPopup": {
     "title": "Reiniciar Partida",
     "message": "¿Estás seguro de que quieres reiniciar la partida?",
     "confirm": "Confirmar",
