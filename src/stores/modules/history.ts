@@ -1,13 +1,12 @@
-import { defineStore } from 'pinia';
+import { defineStore } from 'pinia'
 
 interface HistoryRecord {
-  team: string;
-  points: number;
-  action: string;
+  team: string
+  points: number
 }
 
 interface HistoryState {
-  pointsLog: HistoryRecord[];
+  pointsLog: HistoryRecord[]
 }
 
 export const useHistoryStore = defineStore('history', {
@@ -16,10 +15,10 @@ export const useHistoryStore = defineStore('history', {
   }),
   actions: {
     logPointChange(record: HistoryRecord) {
-      this.pointsLog.push(record);
+      this.pointsLog.push(record)
     },
     resetHistory() {
-      this.pointsLog = [];
+      this.pointsLog = []
     },
   },
-});
+})

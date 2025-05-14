@@ -37,7 +37,6 @@ const groups = computed(() => {
   align-items: center;
   gap: 20px;
   min-height: 320px;
-  min-width: 140px;
 }
 
 .sticks-section__label {

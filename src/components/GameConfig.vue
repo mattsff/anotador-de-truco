@@ -47,7 +47,6 @@ const pointOptions = [
   background-color: var(--color-surface, #fff);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
-  width: 90%;
   max-width: 400px;
 
   &__title {

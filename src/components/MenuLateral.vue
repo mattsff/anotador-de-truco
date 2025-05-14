@@ -15,7 +15,7 @@ const menuItems = [
 </script>
 
 <template>
-  <aside class="menu-lateral" role="dialog" aria-label="Main menu">
+  <div class="menu-lateral" role="dialog" aria-label="Main menu">
     <div class="menu-lateral__header">
       <button
         class="menu-lateral__close-button"
@@ -39,23 +39,15 @@ const menuItems = [
         </li>
       </ul>
     </nav>
-  </aside>
+  </div>
 </template>
 
 <style scoped lang="scss">
 .menu-lateral {
-  position: fixed;
-  top: 0;
-  right: 0;
-  height: 100%;
-  width: 250px;
-  background-color: var(--color-surface, #fff);
-  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.2);
-  z-index: 100;
   display: flex;
   flex-direction: column;
-  transform: translateX(0);
-  transition: transform 0.3s ease-in-out;
+  height: 100%;
+  background-color: var(--color-surface, #fff);
 
   &__header {
     display: flex;
@@ -75,6 +67,10 @@ const menuItems = [
 
     &:hover {
       color: var(--color-accent, #ff9800);
+    }
+
+    @media (min-width: 768px) {
+      display: none;
     }
   }
 
@@ -105,7 +101,6 @@ const menuItems = [
     font-size: 1rem;
     text-decoration: none;
     color: var(--color-text, #333);
-    transition: background-color 0.2s, color 0.2s;
 
     &:hover,
     &:focus {

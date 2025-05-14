@@ -59,7 +59,6 @@ const handleSaveNames = () => {
   background-color: var(--color-surface, #fff);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: var(--spacing-lg, 1.5rem);
-  width: 90%;
   max-width: 400px;
 
   &__title {

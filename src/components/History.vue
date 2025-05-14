@@ -1,22 +1,26 @@
 <script setup lang="ts">
 import { useHistoryStore } from '@/stores';
+import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const historyStore = useHistoryStore();
 const { t } = useI18n();
+
+const history = computed(() => historyStore.pointsLog.toReversed());
+
 </script>
 
 <template>
   <section class="history">
     <h2 class="history__title">{{ t('history.title') }}</h2>
 
-    <div v-if="historyStore.pointsLog.length === 0" class="history__empty">
+    <div v-if="history.length === 0" class="history__empty">
       {{ t('history.emptyMessage') }}
     </div>
 
     <ul v-else class="history__list">
       <li
-        v-for="(record, index) in historyStore.pointsLog"
+        v-for="(record, index) in history"
         :key="index"
         class="history__record"
       >
@@ -24,7 +28,6 @@ const { t } = useI18n();
         <span :class="['history__points', record.points >= 0 ? 'success' : 'danger']">
           {{ record.points }} {{ t('history.pts') }}
         </span>
-        <span class="history__action">({{ record.action }})</span>
       </li>
     </ul>
   </section>
@@ -40,7 +43,6 @@ const { t } = useI18n();
   background-color: var(--color-surface, #fff);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   margin-bottom: var(--spacing-lg, 1.5rem);
-  width: 90%;
   max-width: 400px;
 
   &__title {

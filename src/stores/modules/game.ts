@@ -30,7 +30,6 @@ export const useGameStore = defineStore('game', {
         historyStore.logPointChange({
           team: teamsStore.team1Name,
           points,
-          action: 'sumar',
         })
         this.checkWinCondition()
       }
@@ -44,7 +43,6 @@ export const useGameStore = defineStore('game', {
         historyStore.logPointChange({
           team: teamsStore.team2Name,
           points,
-          action: 'sumar',
         })
         this.checkWinCondition()
       }
@@ -56,7 +54,6 @@ export const useGameStore = defineStore('game', {
       historyStore.logPointChange({
         team: teamsStore.team1Name,
         points: -points,
-        action: 'restar',
       })
     },
     decrementTeam2Score(points: number = 1) {
@@ -66,7 +63,6 @@ export const useGameStore = defineStore('game', {
       historyStore.logPointChange({
         team: teamsStore.team2Name,
         points: -points,
-        action: 'restar',
       })
     },
     setPointsToWin(points: number) {

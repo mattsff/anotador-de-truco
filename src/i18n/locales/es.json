@@ -18,7 +18,7 @@
   "history": {
     "title": "Historial de Puntos",
     "team": "Equipo",
-    "points": "Puntos",
+    "pts": "Punto",
     "action": "Acción",
     "emptyMessage": "Aún no hay historial para mostrar"
   },

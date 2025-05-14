@@ -1,144 +1,192 @@
-<script lang="ts">
-import { defineComponent, ref, computed } from 'vue';
+<script setup lang="ts">
+import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useGameStore } from '@/stores';
-import {  dimensions } from '@/config';
 import ConfirmationPopup from '@/components/ConfirmationPopup.vue';
 import MenuLateral from '@/components/MenuLateral.vue';
 import VictoryAnimation from '@/components/VictoryAnimation.vue';
 
-export default defineComponent({
-  name: 'MainLayout',
-  components: {
-    ConfirmationPopup,
-    VictoryAnimation,
-    MenuLateral,
-  },
-  setup() {
-    const { t } = useI18n();
-    const gameStore = useGameStore();
-    const confirmationPopupRef = ref<InstanceType<typeof ConfirmationPopup> | null>(null);
-    const isMenuOpen = ref(false);
+const gameStore = useGameStore();
+const { t } = useI18n();
 
-    const showResetConfirmation = () => {
-      if (confirmationPopupRef.value) {
-        confirmationPopupRef.value.showPopup(() => {
-          gameStore.resetGame();
-        });
-      }
-    };
+const confirmationPopupRef = ref<InstanceType<typeof ConfirmationPopup> | null>(null);
+const isMenuOpen = ref(false);
 
-    const closeMenu = () => {
-      isMenuOpen.value = false;
-    };
+const showResetConfirmation = () => {
+  confirmationPopupRef.value?.showPopup(() => {
+    gameStore.resetGame();
+    isMenuOpen.value = false;
+  });
+};
 
-    return {
-      t,
-      gameStore,
-      confirmationPopupRef,
-      showResetConfirmation,
-      isMenuOpen,
-      closeMenu,
-      dimensions,
-    };
-  },
-});
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
 </script>
 
 <template>
   <div class="main-layout">
-    <header class="main-layout__header">
-      <button class="main-layout__menu-button" @click="isMenuOpen = true" :style="{ color: '#fff' }">
-        ☰
-      </button>
-      <h1 class="main-layout__title">{{ t('app.title') }}</h1>
-    </header>
+    <!-- Sidebar fixed in desktop, toggle in mobile -->
+    <aside
+      class="main-layout__sidebar"
+      :class="{ 'main-layout__sidebar--open': isMenuOpen }"
+    >
+      <MenuLateral @close="closeMenu" />
+    </aside>
 
-    <MenuLateral
+    <!-- Overlay in mobile when menu is open -->
+    <div
+      class="main-layout__overlay"
       v-if="isMenuOpen"
-      @close="closeMenu"
-      :style="{
-        backgroundColor: '#fff',
-        boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)',
-        width: dimensions.menuWidth,
-      }"
-    />
+      @click="closeMenu"
+    ></div>
 
-    <main class="main-layout__content">
-      <slot />
-       <button
-        class="main-layout__reset-button"
-        @click="showResetConfirmation"
-      >
-        {{ t('menu.reset') }}
-      </button>
-      
-      <ConfirmationPopup ref="confirmationPopupRef" />
-      <VictoryAnimation v-if="gameStore.gameEnded" :winningTeam="gameStore.winningTeam" />
-    </main>
+    <div class="main-layout__main">
+      <header class="main-layout__header">
+        <button
+          class="main-layout__menu-button"
+          @click="toggleMenu"
+          :aria-label="t('menu.open')"
+        >
+          ☰
+        </button>
+        <h1 class="main-layout__title">{{ t('app.title') }}</h1>
+      </header>
 
-    <footer class="app-footer">
-      <span>Desarrollado por 
-        <a href="https://www.linkedin.com/in/matias-sieff/" target="_blank" rel="noopener" aria-label="LinkedIn">
-        Matías Sieff
-      </a>
-      </span>
-      |
-      <a href="https://github.com/mattsff" target="_blank" rel="noopener" aria-label="GitHub">
-        GitHub
-      </a>
-    </footer>
+      <main class="main-layout__content">
+        <slot />
+        <VictoryAnimation
+          v-if="gameStore.gameEnded"
+          :winningTeam="gameStore.winningTeam"
+        />
+      </main>
+
+      <footer class="main-layout__footer">
+        <span>
+            Desarrollado por
+            <a href="https://www.linkedin.com/in/sieffmatias/" target="_blank" rel="noopener">
+              Matías Sieff
+            </a>
+          |
+          <a href="https://github.com/mattsff" target="_blank" rel="noopener">
+            GitHub
+          </a>
+        </span>
+      </footer>
+    </div>
+
+    <ConfirmationPopup ref="confirmationPopupRef" />
   </div>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .main-layout {
   display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100%;
+
+  &__sidebar {
+    background-color: #fff;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100%;
+    z-index: 1000;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease-in-out;
+
+    &--open {
+      left: 0;
+    }
+
+    @media (min-width: 768px) {
+      position: static;
+      left: 0;
+      box-shadow: none;
+      width: 250px;
+    }
+  }
+
+  &__overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 900;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
+  }
+
+  &__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin-left: 0;
+    background-color: #f5f5f5;
+
+    @media (min-width: 768px) {
+      margin-left: 250px;
+    }
+  }
+
   &__header {
     display: flex;
     align-items: center;
     padding: 10px 20px;
+    background-color: #2d4263;
     color: white;
+
+    @media (min-width: 768px) {
+      display: none;
+    }
   }
+
   &__menu-button {
     background: none;
     border: none;
     font-size: 24px;
     cursor: pointer;
-    padding: 5px;
+    color: white;
   }
+
   &__title {
+    margin-left: 10px;
     font-size: 20px;
     font-weight: bold;
-    margin: 0px 10px;
   }
+
   &__content {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     padding: 20px;
-    position: relative;
+    overflow-y: auto;
   }
+
   &__footer {
+    background-color: #2d4263;
+    border-top: 3px solid #ecdbba;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    padding: 10px 20px;
-  }
-  &__reset-button {
-    margin-top: 20px;
-    padding: 10px 20px;
-    background-color: #e74c3c;
+    padding: 10px;
+    font-size: 0.9rem;
     color: white;
-    border: none;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    &:hover {
-      background-color: #c0392b;
+
+    a {
+      color: #ecdbba;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

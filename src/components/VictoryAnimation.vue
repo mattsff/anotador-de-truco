@@ -21,16 +21,16 @@ const newGame = () => {
 
 <template>
   <div v-if="gameStore.gameEnded" class="victory-animation" role="alert" aria-live="assertive">
-    <div>
+    <div class="victory-animation__container">
       <h2 class="victory-animation__title">
         {{ animationText }}
       </h2>
       <div class="victory-animation__buttons">
-        <button @click="cancelWin" class="victory-animation__button">
-          {{ t('victoryAnimation.cancelWin') }}
-        </button>
-        <button @click="newGame" class="victory-animation__button">
+         <button @click="newGame" class="victory-animation__primary-button">
           {{ t('victoryAnimation.newGame') }}
+        </button>
+        <button @click="cancelWin" class="victory-animation__secondary-button">
+          {{ t('victoryAnimation.cancelWin') }}
         </button>
       </div>
     </div>
@@ -43,7 +43,7 @@ const newGame = () => {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -51,6 +51,10 @@ const newGame = () => {
   z-index: 100;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
   backdrop-filter: blur(3px);
+
+  &__container {
+    width: 80vw;
+  }
 
   &__title {
     font-size: 2.5rem;
@@ -71,7 +75,7 @@ const newGame = () => {
     gap: 1rem;
   }
 
-  &__button {
+  &__primary-button {
     padding: 0.75rem 1.5rem;
     font-size: 1.2rem;
     font-weight: bold;
@@ -79,6 +83,22 @@ const newGame = () => {
     border: none;
     cursor: pointer;
     background-color: var(--color-primary, #2196f3);
+    color: white;
+    transition: background-color 0.2s ease;
+
+    &:hover {
+      background-color: var(--color-primary-hover, #1976d2);
+    }
+  }
+
+  &__secondary-button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    background-color: var(--color-primary, #2196f34D);
     color: white;
     transition: background-color 0.2s ease;
 
