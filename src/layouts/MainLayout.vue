@@ -96,7 +96,7 @@ const closeMenu = () => {
     top: 0;
     left: -250px;
     height: 100%;
-    z-index: 1000;
+    z-index: 800;
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
     transition: left 0.3s ease-in-out;
 
@@ -119,7 +119,7 @@ const closeMenu = () => {
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
-    z-index: 900;
+    z-index: 700;
 
     @media (min-width: 768px) {
       display: none;

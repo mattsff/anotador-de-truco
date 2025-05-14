@@ -1,20 +1,20 @@
 <script setup lang="ts">
 import { ref, defineExpose } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { useGameStore } from '@/stores';
 
 const { t } = useI18n();
+const gameStore = useGameStore();
 
 const show = ref(false);
-let onConfirmCallback = () => {};
 
-const showPopup = (callback: () => void) => {
-  onConfirmCallback = callback;
+const showPopup = () => {
   show.value = true;
 };
 
 const confirm = () => {
-  onConfirmCallback();
   show.value = false;
+  gameStore.resetGame();
 };
 
 const cancel = () => {
@@ -67,6 +67,7 @@ defineExpose({ showPopup });
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     width: var(--popup-width, 320px);
     max-width: 90%;
+    margin: 10%;
   }
 
   &__title {

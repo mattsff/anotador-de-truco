@@ -1,17 +1,27 @@
 <script setup lang="ts">
-import { useI18n } from 'vue-i18n';
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import ConfirmationPopup from '@/components/ConfirmationPopup.vue'
 
 const props = defineProps<{
-  onClose: () => void;
-}>();
+  onClose: () => void
+}>()
 
-const { t } = useI18n();
+const { t } = useI18n()
+
 const menuItems = [
   { to: '/', label: t('menu.scoreboard') },
   { to: '/teams', label: t('menu.teams') },
   { to: '/history', label: t('menu.history') },
   { to: '/game-config', label: t('menu.gameConfig') },
-];
+]
+
+const confirmationPopupRef = ref<InstanceType<typeof ConfirmationPopup> | null>(null);
+
+const showResetConfirmation = () => {
+  confirmationPopupRef.value?.showPopup();
+  props.onClose();
+};
 </script>
 
 <template>
@@ -39,7 +49,19 @@ const menuItems = [
         </li>
       </ul>
     </nav>
+    <div class="menu-lateral__actions">
+      <button
+        class="menu-lateral__reset-button"
+        @click="showResetConfirmation"
+      >
+        {{ t('menu.reset') }}
+      </button>
+      
+    </div>
   </div>
+
+
+<ConfirmationPopup ref="confirmationPopupRef" />
 </template>
 
 <style scoped lang="scss">
@@ -108,6 +130,26 @@ const menuItems = [
       color: var(--color-on-primary, #fff);
       font-weight: bold;
     }
+  }
+}
+
+.menu-lateral__actions {
+  padding: 1rem;
+  border-top: 1px solid #eee;
+}
+
+.menu-lateral__reset-button {
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-error, #d32f2f);
+  color: var(--color-on-error, #fff);
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-align: center;
+
+  &:hover {
+    background-color: darken(#d32f2f, 10%);
   }
 }
 </style>
