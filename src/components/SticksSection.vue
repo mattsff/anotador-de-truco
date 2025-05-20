@@ -30,19 +30,20 @@ const groups = computed(() => {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .sticks-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: var(--spacing-lg);
   min-height: 320px;
 }
 
 .sticks-section__label {
   font-weight: bold;
-  font-size: 14px;
+  font-size: var(--font-size-base);
   text-align: center;
+  color: var(--color-text-base);
 }
 
 .group {

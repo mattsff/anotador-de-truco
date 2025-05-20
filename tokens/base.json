@@ -1,108 +1,78 @@
 {
   "color": {
     "background": {
-      "value": "#f0f0f0"
+      "default": { "value": "#f0f0f0" },
+      "alt": { "value": "#e0e0e0" },
+      "inverse": { "value": "#1a1a1a" }
+    },
+    "surface": {
+      "default": { "value": "#ffffff" },
+      "alt": { "value": "#fafafa" },
+      "inverse": { "value": "#2c2c2c" }
     },
     "text": {
-      "value": "#2c3e50"
+      "base": { "value": "#2c3e50" },
+      "muted": { "value": "#7f8c8d" },
+      "inverse": { "value": "#ffffff" }
     },
     "primary": {
-      "value": "#3498db"
-    },
-    "primary-hover": {
-      "value": "#2980b9"
+      "default": { "value": "#3498db" },
+      "hover": { "value": "#2980b9" },
+      "text": { "value": "#ffffff" }
     },
     "secondary": {
-      "value": "#e67e22"
-    },
-    "secondary-hover": {
-      "value": "#d35400"
+      "default": { "value": "#e67e22" },
+      "hover": { "value": "#d35400" },
+      "text": { "value": "#ffffff" }
     },
     "success": {
-      "value": "#2ecc71"
-    },
-    "success-hover": {
-      "value": "#27ae60"
+      "default": { "value": "#2ecc71" },
+      "hover": { "value": "#27ae60" },
+      "text": { "value": "#ffffff" }
     },
     "warning": {
-      "value": "#f1c40f"
-    },
-    "warning-hover": {
-      "value": "#f0b207"
+      "default": { "value": "#f1c40f" },
+      "hover": { "value": "#f0b207" },
+      "text": { "value": "#000000" }
     },
     "danger": {
-      "value": "#e74c3c"
+      "default": { "value": "#e74c3c" },
+      "hover": { "value": "#c0392b" },
+      "text": { "value": "#ffffff" }
     },
-    "danger-hover": {
-      "value": "#c0392b"
+    "border": {
+      "light": { "value": "#e0e0e0" },
+      "default": { "value": "#cccccc" },
+      "strong": { "value": "#999999" }
     },
-    "white": {
-      "value": "#ffffff"
-    },
-    "title": {
-      "value": "#333333"
-    },
-    "team-name": {
-      "value": "#555555"
-    },
-    "team-score": {
-      "value": "#2c3e50"
-    },
-    "stage-text": {
-      "value": "#e74c3c"
-    },
-    "stage-background": {
-      "value": "#fdedec"
+    "custom": {
+      "title": { "value": "#333333" },
+      "team-name": { "value": "#555555" },
+      "team-score": { "value": "#2c3e50" },
+      "stage-text": { "value": "#e74c3c" },
+      "stage-background": { "value": "#fdedec" }
     }
   },
   "spacing": {
-    "xs": {
-      "value": "4px"
-    },
-    "sm": {
-      "value": "8px"
-    },
-    "md": {
-      "value": "16px"
-    },
-    "lg": {
-      "value": "24px"
-    },
-    "xl": {
-      "value": "32px"
-    }
+    "xs": { "value": "4px" },
+    "sm": { "value": "8px" },
+    "md": { "value": "16px" },
+    "lg": { "value": "24px" },
+    "xl": { "value": "32px" }
   },
   "radius": {
-    "sm": {
-      "value": "4px"
-    },
-    "md": {
-      "value": "8px"
-    },
-    "lg": {
-      "value": "16px"
-    }
+    "sm": { "value": "4px" },
+    "md": { "value": "8px" },
+    "lg": { "value": "16px" }
   },
   "font": {
-    "base": {
-      "value": "system-ui, Avenir, Helvetica, Arial, sans-serif"
-    }
+    "base": { "value": "system-ui, Avenir, Helvetica, Arial, sans-serif" }
   },
   "font-size": {
-    "sm": {
-      "value": "0.875rem"
-    },
-    "base": {
-      "value": "1rem"
-    },
-    "lg": {
-      "value": "1.25rem"
-    },
-    "xl": {
-      "value": "1.5rem"
-    },
-    "xxl": {
-      "value": "2rem"
-    }
+    "sm": { "value": "0.875rem" },
+    "md": { "value": "1rem" },
+    "lg": { "value": "1.25rem" },
+    "xl": { "value": "1.5rem" },
+    "xxl": { "value": "2rem" }
   }
 }

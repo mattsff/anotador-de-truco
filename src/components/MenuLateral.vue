@@ -69,14 +69,14 @@ const showResetConfirmation = () => {
   display: flex;
   flex-direction: column;
   height: 100%;
-  background-color: var(--color-surface, #fff);
+  background-color: var(--color-surface-default);
 
   &__header {
     display: flex;
     align-items: center;
-    padding: 1rem;
-    background-color: var(--color-primary, #1c1c2b);
-    color: var(--color-on-primary, #fff);
+    padding: var(--spacing-md);
+    background-color: var(--color-primary-default);
+    color: var(--color-primary-text);
   }
 
   &__close-button {
@@ -88,7 +88,7 @@ const showResetConfirmation = () => {
     color: inherit;
 
     &:hover {
-      color: var(--color-accent, #ff9800);
+      color: var(--color-secondary-default);
     }
 
     @media (min-width: 768px) {
@@ -97,7 +97,7 @@ const showResetConfirmation = () => {
   }
 
   &__title {
-    font-size: 1.2rem;
+    font-size: var(--font-size-lg);
     font-weight: bold;
     margin: 0;
   }
@@ -114,42 +114,42 @@ const showResetConfirmation = () => {
   }
 
   &__item {
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--color-border-light);
   }
 
   &__link {
     display: block;
-    padding: 1rem;
-    font-size: 1rem;
+    padding: var(--spacing-md);
+    font-size: var(--font-size-md);
     text-decoration: none;
-    color: var(--color-text, #333);
+    color: var(--color-text-base);
 
     &:hover,
     &:focus {
-      background-color: var(--color-primary, #1c1c2b);
-      color: var(--color-on-primary, #fff);
+      background-color: var(--color-primary-default);
+      color: var(--color-primary-text);
       font-weight: bold;
     }
   }
-}
 
-.menu-lateral__actions {
-  padding: 1rem;
-  border-top: 1px solid #eee;
-}
+  &__actions {
+    padding: var(--spacing-md);
+    border-top: 1px solid var(--color-border-light);
+  }
 
-.menu-lateral__reset-button {
-  width: 100%;
-  padding: 1rem;
-  background-color: #d32f2f;
-  color: var(--color-white);
-  border: none;
-  font-size: 1rem;
-  cursor: pointer;
-  text-align: center;
+  &__reset-button {
+    width: 100%;
+    padding: var(--spacing-md);
+    background-color: var(--color-danger-default);
+    color: var(--color-surface-default);
+    border: none;
+    font-size: var(--font-size-md);
+    cursor: pointer;
+    text-align: center;
 
-  &:hover {
-  background-color: #b03232;
+    &:hover {
+      background-color: var(--color-danger-hover);
+    }
   }
 }
 </style>

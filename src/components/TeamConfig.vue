@@ -54,18 +54,18 @@ const handleSaveNames = () => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-lg, 1.5rem);
-  border-radius: var(--border-radius, 12px);
-  background-color: var(--color-surface, #fff);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: var(--spacing-lg, 1.5rem);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  margin-bottom: var(--spacing-lg);
   max-width: 400px;
 
   &__title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--title-color, #333);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-custom-title);
   }
 
   &__form {
@@ -78,47 +78,40 @@ const handleSaveNames = () => {
     margin: 0;
   }
 
-  &__legend {
-    font-weight: 600;
-    margin-bottom: 1rem;
-    color: var(--text-primary, #333);
-    font-size: 1.125rem;
-  }
-
   &__input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 1rem;
+    margin-bottom: var(--spacing-md);
   }
 
   &__label {
-    margin-bottom: 0.5rem;
+    margin-bottom: var(--spacing-xs);
     font-weight: 600;
-    color: var(--text-primary, #333);
+    color: var(--color-text-base);
   }
 
   &__input {
-    padding: var(--input-padding, 0.75rem);
-    border: 1px solid var(--border-color, #ccc);
-    border-radius: var(--border-radius, 8px);
-    font-size: 1rem;
+    padding: var(--spacing-sm);
+    border: 1px solid var(--color-border-default);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
   }
 
   &__save-button {
     display: block;
     width: 100%;
-    padding: var(--button-padding, 0.75rem);
-    background-color: var(--primary, #3498db);
-    color: #fff;
+    padding: var(--spacing-sm);
+    background-color: var(--color-primary-default);
+    color: var(--color-surface-default);
     border: none;
-    border-radius: var(--border-radius, 8px);
-    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s ease;
 
     &:hover {
-      background-color: var(--primary-dark, #217dbb);
+      background-color: var(--color-primary-hover);
     }
   }
 }

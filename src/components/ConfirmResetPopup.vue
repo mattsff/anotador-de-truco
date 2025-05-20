@@ -53,7 +53,7 @@ defineExpose({ showPopup });
   justify-content: center;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: var(--color-background-inverse);
   z-index: 1000;
 
   &__content {
@@ -61,61 +61,61 @@ defineExpose({ showPopup });
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: var(--popup-padding, 2rem);
-    border-radius: var(--border-radius, 12px);
-    background-color: var(--color-surface, #fff);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    width: var(--popup-width, 320px);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    background-color: var(--color-surface-default);
+    box-shadow: 0 var(--spacing-sm) var(--spacing-lg) rgba(0, 0, 0, 0.2);
+    width: 320px;
     max-width: 90%;
     margin: 10%;
   }
 
   &__title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: bold;
-    margin-bottom: 1rem;
-    color: var(--title-color, #333);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-custom-title);
   }
 
   &__message {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: var(--text-color, #555);
+    font-size: var(--font-size-md);
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-base);
   }
 
   &__buttons {
     display: flex;
     width: 100%;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     flex-wrap: wrap;
     justify-content: center;
   }
 
   &__button {
     flex: 1 1 40%;
-    padding: var(--button-padding, 0.75rem 1.5rem);
+    padding: var(--spacing-sm);
     border: none;
-    border-radius: var(--button-border-radius, 8px);
-    font-size: 1rem;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    color: var(--on-primary, #fff);
+    color: var(--color-surface-default);
     text-align: center;
   }
 
   &__confirm {
-    background-color: var(--danger, #e53935);
+    background-color: var(--color-danger-default);
 
     &:hover {
-      background-color: var(--danger-hover, #b71c1c);
+      background-color: var(--color-danger-hover);
     }
   }
 
   &__cancel {
-    background-color: var(--secondary, #757575);
+    background-color: var(--color-secondary-default);
 
     &:hover {
-      background-color: var(--secondary-hover, #424242);
+      background-color: var(--color-secondary-hover);
     }
   }
 }

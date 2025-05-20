@@ -47,36 +47,36 @@ const subtractPoints = () => {
 <style scoped lang="scss">
 .point-controls {
   display: flex;
-  gap: 10px;
-  margin-top: 10px;
+  gap: var(--spacing-sm);
+  margin-top: var(--spacing-sm);
 
   &__button {
-    padding: 10px 20px;
+    padding: var(--spacing-sm) var(--spacing-md);
     border: none;
-    border-radius: 6px;
-    font-size: 16px;
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.2s ease, transform 0.1s ease;
-    color: white;
+    color: var(--color-surface-default);
 
     &:active {
       transform: scale(0.95);
     }
 
     &--add {
-      background-color: var(--color-success, #4caf50);
+      background-color: var(--color-success-default);
 
       &:hover {
-        background-color: var(--color-success-hover, #43a047);
+        background-color: var(--color-success-hover);
       }
     }
 
     &--subtract {
-      background-color: var(--color-danger, #e5393577);
+      background-color: var(--color-danger-default);
 
       &:hover {
-        background-color: var(--color-danger-hover, #d32f2f);
+        background-color: var(--color-danger-hover);
       }
     }
   }

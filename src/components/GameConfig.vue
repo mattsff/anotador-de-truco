@@ -42,45 +42,45 @@ const pointOptions = [
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 2rem;
-  border-radius: var(--border-radius, 10px);
-  background-color: var(--color-surface, #fff);
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-bottom: 1.5rem;
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  margin-bottom: var(--spacing-lg);
   max-width: 400px;
 
   &__title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: var(--title-color, #333);
+    margin-bottom: var(--spacing-lg);
+    color: var(--color-custom-title);
   }
 
   &__options {
     display: flex;
-    gap: 1rem;
+    gap: var(--spacing-sm);
     flex-wrap: wrap;
     justify-content: center;
   }
 
   &__option {
-    padding: 0.75rem 1.5rem;
-    border: 2px solid var(--primary, #1c1c2b);
-    border-radius: var(--button-border-radius, 8px);
-    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--color-primary-default);
+    border-radius: var(--radius-sm);
+    font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
     background-color: transparent;
-    color: var(--primary, #1c1c2b);
+    color: var(--color-primary-default);
 
     &--active {
-      background-color: var(--primary, #1c1c2b);
-      color: var(--on-primary, #fff);
+      background-color: var(--color-primary-default);
+      color: var(--color-surface-default);
     }
 
     &:hover {
-      background-color: var(--primary-hover, #333);
-      color: var(--on-primary, #fff);
+      background-color: var(--color-primary-hover);
+      color: var(--color-surface-default);
     }
   }
 }

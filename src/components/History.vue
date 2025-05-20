@@ -38,24 +38,24 @@ const history = computed(() => historyStore.pointsLog.toReversed());
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: var(--spacing-lg, 1.5rem);
-  border-radius: var(--border-radius, 12px);
-  background-color: var(--color-surface, #fff);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  margin-bottom: var(--spacing-lg, 1.5rem);
+  padding: var(--spacing-lg);
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface-default);
+  margin-bottom: var(--spacing-lg);
   max-width: 400px;
 
   &__title {
-    font-size: 1.5rem;
+    font-size: var(--font-size-xl);
     font-weight: 700;
-    margin-bottom: 1rem;
-    color: var(--title-color, #333);
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-custom-title);
   }
 
   &__empty {
-    font-size: 1rem;
-    color: var(--text-muted, #888);
-    margin-top: 1rem;
+    font-size: var(--font-size-base);
+    color: var(--color-text-muted);
+    margin-top: var(--spacing-sm);
   }
 
   &__list {
@@ -65,16 +65,16 @@ const history = computed(() => historyStore.pointsLog.toReversed());
     list-style: none;
     padding: 0;
     margin: 0;
-    gap: 0.75rem;
+    gap: var(--spacing-sm);
   }
 
   &__record {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--border-color, #eee);
-    font-size: 1rem;
+    padding-bottom: var(--spacing-xs);
+    border-bottom: 1px solid var(--color-border-default);
+    font-size: var(--font-size-base);
     &:last-child {
       border-bottom: none;
     }
@@ -82,22 +82,17 @@ const history = computed(() => historyStore.pointsLog.toReversed());
 
   &__team {
     font-weight: 600;
-    color: var(--text-primary, #333);
+    color: var(--color-custom-team-name);
   }
 
   &__points {
     font-weight: 700;
     &.success {
-      color: var(--success, #43a047);
+      color: var(--color-success-default);
     }
     &.danger {
-      color: var(--danger, #e53935);
+      color: var(--color-danger-default);
     }
-  }
-
-  &__action {
-    color: var(--text-muted, #888);
-    font-size: 0.875rem;
   }
 }
 </style>

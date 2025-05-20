@@ -57,53 +57,38 @@ const newGame = () => {
   }
 
   &__title {
-    font-size: 2.5rem;
+    font-size: var(--font-size-xxl);
     font-weight: 800;
-    color: var(--success, #4caf50);
+    color: var(--color-success-default);
     animation: pulse 1.8s ease-in-out infinite;
-    padding: 1rem 2rem;
-    border: 4px solid var(--success, #4caf50);
-    border-radius: 16px;
+    padding: var(--spacing-md) var(--spacing-lg);
+    border: 4px solid var(--color-success-default);
+    border-radius: var(--radius-lg);
     box-shadow: 0 0 20px rgba(76, 175, 80, 0.6);
     background-color: rgba(255, 255, 255, 0.05);
-    margin-bottom: 2rem;
+    margin-bottom: var(--spacing-lg);
   }
 
   &__buttons {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: var(--spacing-sm);
   }
 
-  &__primary-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 8px;
-    border: none;
-    cursor: pointer;
-    background-color: var(--color-primary, #2196f3);
-    color: white;
-    transition: background-color 0.2s ease;
-
-    &:hover {
-      background-color: var(--color-primary-hover, #1976d2);
-    }
-  }
-
+  &__primary-button,
   &__secondary-button {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.2rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    font-size: var(--font-size-lg);
     font-weight: bold;
-    border-radius: 8px;
+    border-radius: var(--radius-sm);
     border: none;
     cursor: pointer;
-    background-color: var(--color-primary, #2196f34D);
-    color: white;
+    background-color: var(--color-primary-default);
+    color: var(--color-surface-default);
     transition: background-color 0.2s ease;
 
     &:hover {
-      background-color: var(--color-primary-hover, #1976d2);
+      background-color: var(--color-primary-hover);
     }
   }
 }

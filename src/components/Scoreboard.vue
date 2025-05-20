@@ -57,8 +57,8 @@ const getDisplayData = (score: number) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: var(--background-color); 
-  color: var(--text-color); 
+  background-color: var(--color-background-default); 
+  color: var(--color-text-base); 
   padding: var(--spacing-md);
   border-radius: var(--radius-lg); 
 
@@ -66,7 +66,7 @@ const getDisplayData = (score: number) => {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: var(--spacing-lg, 20px);
+    gap: var(--spacing-lg);
     max-width: 600px;
   }
 
@@ -74,7 +74,7 @@ const getDisplayData = (score: number) => {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: var(--surface-color, #2d2d44);
+    background-color: var(--color-surface-inverse);
     padding: var(--spacing-md);
     border-radius: var(--radius-md);
   }
