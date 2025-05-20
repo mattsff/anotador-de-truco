@@ -141,15 +141,15 @@ const showResetConfirmation = () => {
 .menu-lateral__reset-button {
   width: 100%;
   padding: 1rem;
-  background-color: var(--color-error, #d32f2f);
-  color: var(--color-on-error, #fff);
+  background-color: #d32f2f;
+  color: var(--color-white);
   border: none;
   font-size: 1rem;
   cursor: pointer;
   text-align: center;
 
   &:hover {
-    background-color: darken(#d32f2f, 10%);
+  background-color: #b03232;
   }
 }
 </style>

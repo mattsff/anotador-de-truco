@@ -1,3 +1,1 @@
-export * from '../styles/dimensions';
-export * from './constants';
-
+export * from './constants'

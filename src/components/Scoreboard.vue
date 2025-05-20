@@ -57,28 +57,31 @@ const getDisplayData = (score: number) => {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #1c1c2b;
-  color: #fff;
-  padding: 20px;
-  border-radius: 10px;
+  background-color: var(--background-color); 
+  color: var(--text-color); 
+  padding: var(--spacing-md);
+  border-radius: var(--radius-lg); 
+
   &__teams {
     display: flex;
     justify-content: space-between;
     width: 100%;
-    gap: 20px;
+    gap: var(--spacing-lg, 20px);
     max-width: 600px;
   }
+
   &__team {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #2d2d44;
-    padding: 15px;
-    border-radius: 8px;
+    background-color: var(--surface-color, #2d2d44);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
   }
+
   &__team-name {
-    font-size: 20px;
-    margin-bottom: 10px;
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-sm);
   }
 }
 </style>

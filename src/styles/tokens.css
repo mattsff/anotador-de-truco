@@ -1,0 +1,38 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+:root {
+  --color-background: #f0f0f0;
+  --color-text: #2c3e50;
+  --color-primary: #3498db;
+  --color-primary-hover: #2980b9;
+  --color-secondary: #e67e22;
+  --color-secondary-hover: #d35400;
+  --color-success: #2ecc71;
+  --color-success-hover: #27ae60;
+  --color-warning: #f1c40f;
+  --color-warning-hover: #f0b207;
+  --color-danger: #e74c3c;
+  --color-danger-hover: #c0392b;
+  --color-white: #ffffff;
+  --color-title: #333333;
+  --color-team-name: #555555;
+  --color-team-score: #2c3e50;
+  --color-stage-text: #e74c3c;
+  --color-stage-background: #fdedec;
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px;
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --font-base: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  --font-size-sm: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-lg: 1.25rem;
+  --font-size-xl: 1.5rem;
+  --font-size-xxl: 2rem;
+}

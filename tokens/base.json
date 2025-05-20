@@ -1,0 +1,108 @@
+{
+  "color": {
+    "background": {
+      "value": "#f0f0f0"
+    },
+    "text": {
+      "value": "#2c3e50"
+    },
+    "primary": {
+      "value": "#3498db"
+    },
+    "primary-hover": {
+      "value": "#2980b9"
+    },
+    "secondary": {
+      "value": "#e67e22"
+    },
+    "secondary-hover": {
+      "value": "#d35400"
+    },
+    "success": {
+      "value": "#2ecc71"
+    },
+    "success-hover": {
+      "value": "#27ae60"
+    },
+    "warning": {
+      "value": "#f1c40f"
+    },
+    "warning-hover": {
+      "value": "#f0b207"
+    },
+    "danger": {
+      "value": "#e74c3c"
+    },
+    "danger-hover": {
+      "value": "#c0392b"
+    },
+    "white": {
+      "value": "#ffffff"
+    },
+    "title": {
+      "value": "#333333"
+    },
+    "team-name": {
+      "value": "#555555"
+    },
+    "team-score": {
+      "value": "#2c3e50"
+    },
+    "stage-text": {
+      "value": "#e74c3c"
+    },
+    "stage-background": {
+      "value": "#fdedec"
+    }
+  },
+  "spacing": {
+    "xs": {
+      "value": "4px"
+    },
+    "sm": {
+      "value": "8px"
+    },
+    "md": {
+      "value": "16px"
+    },
+    "lg": {
+      "value": "24px"
+    },
+    "xl": {
+      "value": "32px"
+    }
+  },
+  "radius": {
+    "sm": {
+      "value": "4px"
+    },
+    "md": {
+      "value": "8px"
+    },
+    "lg": {
+      "value": "16px"
+    }
+  },
+  "font": {
+    "base": {
+      "value": "system-ui, Avenir, Helvetica, Arial, sans-serif"
+    }
+  },
+  "font-size": {
+    "sm": {
+      "value": "0.875rem"
+    },
+    "base": {
+      "value": "1rem"
+    },
+    "lg": {
+      "value": "1.25rem"
+    },
+    "xl": {
+      "value": "1.5rem"
+    },
+    "xxl": {
+      "value": "2rem"
+    }
+  }
+}
