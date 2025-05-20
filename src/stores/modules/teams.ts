@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 export const useTeamsStore = defineStore('teams', {
   state: () => ({
-    team1Name: 'Equipo 1',
-    team2Name: 'Equipo 2',
+    team1Name: 'Nosotros',
+    team2Name: 'Ellos',
   }),
   actions: {
     setTeam1Name(name: string) {
@@ -13,4 +13,5 @@ export const useTeamsStore = defineStore('teams', {
       this.team2Name = name
     },
   },
+  persist: true,
 })

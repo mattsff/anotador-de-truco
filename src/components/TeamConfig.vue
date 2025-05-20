@@ -28,6 +28,7 @@ const handleSaveNames = () => {
             type="text"
             v-model="team1Name"
             class="team-config__input"
+            maxlength="8"
           />
         </div>
 
@@ -38,6 +39,7 @@ const handleSaveNames = () => {
             type="text"
             v-model="team2Name"
             class="team-config__input"
+            maxlength="8"
           />
         </div>
 

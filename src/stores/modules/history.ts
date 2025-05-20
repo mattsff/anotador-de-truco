@@ -21,4 +21,5 @@ export const useHistoryStore = defineStore('history', {
       this.pointsLog = []
     },
   },
+  persist: true,
 })

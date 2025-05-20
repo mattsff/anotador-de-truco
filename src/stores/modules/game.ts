@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config'
+import { GAME_POINTS_30 } from '@/config'
 import { useTeamsStore, useHistoryStore } from '@/stores'
 
 interface GameState {
@@ -110,4 +110,5 @@ export const useGameStore = defineStore('game', {
       this.winningTeam = null
     },
   },
+  persist: true,
 })
