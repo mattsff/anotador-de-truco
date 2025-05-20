@@ -1,13 +1,17 @@
 <script setup lang="ts">
-import { useHistoryStore } from '@/stores';
+import { useHistoryStore, useTeamsStore } from '@/stores';
 import { computed } from 'vue';
 import { useI18n } from 'vue-i18n';
 
 const historyStore = useHistoryStore();
+const teamsStore = useTeamsStore();
 const { t } = useI18n();
 
 const history = computed(() => historyStore.pointsLog.toReversed());
-
+const teamNames = computed(() => ({
+  1: teamsStore.team1Name,
+  2: teamsStore.team2Name,
+}));
 </script>
 
 <template>
@@ -24,7 +28,7 @@ const history = computed(() => historyStore.pointsLog.toReversed());
         :key="index"
         class="history__record"
       >
-        <span class="history__team">{{ record.team }}:</span>
+        <span class="history__team">{{ teamNames[record.teamNumber] }}:</span>
         <span :class="['history__points', record.points >= 0 ? 'success' : 'danger']">
           {{ record.points }} {{ t('history.pts') }}
         </span>

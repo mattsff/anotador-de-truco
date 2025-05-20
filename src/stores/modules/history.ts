@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 
 interface HistoryRecord {
-  team: string
+  teamNumber: 1 | 2
   points: number
 }
 

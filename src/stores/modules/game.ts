@@ -28,7 +28,7 @@ export const useGameStore = defineStore('game', {
         const teamsStore = useTeamsStore()
         const historyStore = useHistoryStore()
         historyStore.logPointChange({
-          team: teamsStore.team1Name,
+          teamNumber: 1,
           points,
         })
         this.checkWinCondition()
@@ -41,7 +41,7 @@ export const useGameStore = defineStore('game', {
         const teamsStore = useTeamsStore()
         const historyStore = useHistoryStore()
         historyStore.logPointChange({
-          team: teamsStore.team2Name,
+          teamNumber: 2,
           points,
         })
         this.checkWinCondition()
@@ -52,7 +52,7 @@ export const useGameStore = defineStore('game', {
       const teamsStore = useTeamsStore()
       const historyStore = useHistoryStore()
       historyStore.logPointChange({
-        team: teamsStore.team1Name,
+        teamNumber: 1,
         points: -points,
       })
     },
@@ -61,7 +61,7 @@ export const useGameStore = defineStore('game', {
       const teamsStore = useTeamsStore()
       const historyStore = useHistoryStore()
       historyStore.logPointChange({
-        team: teamsStore.team2Name,
+        teamNumber: 2,
         points: -points,
       })
     },
