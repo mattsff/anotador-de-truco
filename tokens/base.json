@@ -1,56 +1,56 @@
 {
   "color": {
     "background": {
-      "default": { "value": "#f0f0f0" },
-      "alt": { "value": "#e0e0e0" },
-      "inverse": { "value": "#1a1a1a" }
+      "default": { "value": "#181c24" },
+      "alt": { "value": "#232a34" },
+      "inverse": { "value": "#181c24" }
     },
     "surface": {
-      "default": { "value": "#ffffff" },
-      "alt": { "value": "#fafafa" },
-      "inverse": { "value": "#2c2c2c" }
+      "default": { "value": "#232a34" },
+      "alt": { "value": "#232a34" },
+      "inverse": { "value": "#232a34" }
     },
     "text": {
-      "base": { "value": "#2c3e50" },
+      "base": { "value": "#bfc9db" },
       "muted": { "value": "#7f8c8d" },
       "inverse": { "value": "#ffffff" }
     },
     "primary": {
-      "default": { "value": "#3498db" },
-      "hover": { "value": "#2980b9" },
+      "default": { "value": "#4f8cff" },
+      "hover": { "value": "#3761b6" },
       "text": { "value": "#ffffff" }
     },
     "secondary": {
-      "default": { "value": "#e67e22" },
-      "hover": { "value": "#d35400" },
-      "text": { "value": "#ffffff" }
+      "default": { "value": "#ffb74d" },
+      "hover": { "value": "#ffa726" },
+      "text": { "value": "#232a34" }
     },
     "success": {
-      "default": { "value": "#2ecc71" },
-      "hover": { "value": "#27ae60" },
-      "text": { "value": "#ffffff" }
+      "default": { "value": "#43e97b" },
+      "hover": { "value": "#38b86c" },
+      "text": { "value": "#232a34" }
     },
     "warning": {
-      "default": { "value": "#f1c40f" },
-      "hover": { "value": "#f0b207" },
-      "text": { "value": "#000000" }
+      "default": { "value": "#ffd600" },
+      "hover": { "value": "#ffea00" },
+      "text": { "value": "#232a34" }
     },
     "danger": {
-      "default": { "value": "#e74c3c" },
-      "hover": { "value": "#c0392b" },
+      "default": { "value": "#e53935" },
+      "hover": { "value": "#b71c1c" },
       "text": { "value": "#ffffff" }
     },
     "border": {
-      "light": { "value": "#e0e0e0" },
-      "default": { "value": "#cccccc" },
-      "strong": { "value": "#999999" }
+      "light": { "value": "#232a34" },
+      "default": { "value": "#232a34" },
+      "strong": { "value": "#2c2c2c" }
     },
     "custom": {
-      "title": { "value": "#333333" },
-      "team-name": { "value": "#555555" },
-      "team-score": { "value": "#2c3e50" },
-      "stage-text": { "value": "#e74c3c" },
-      "stage-background": { "value": "#fdedec" }
+      "title": { "value": "#ffffff" },
+      "team-name": { "value": "#bfc9db" },
+      "team-score": { "value": "#4f8cff" },
+      "stage-text": { "value": "#e53935" },
+      "stage-background": { "value": "#232a34" }
     }
   },
   "spacing": {

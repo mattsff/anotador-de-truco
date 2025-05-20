@@ -132,10 +132,6 @@ const closeMenu = () => {
     flex: 1;
     margin-left: 0;
     background-color: #f5f5f5;
-
-    @media (min-width: 768px) {
-      margin-left: 250px;
-    }
   }
 
   &__header {
