@@ -3,6 +3,14 @@ import { ref, defineExpose } from 'vue';
 import { useI18n } from 'vue-i18n';
 import { useGameStore } from '@/stores';
 
+const props = defineProps<{
+  onConfirm?: () => void
+  title?: string
+  message?: string
+  confirmText?: string
+  cancelText?: string
+}>();
+
 const { t } = useI18n();
 const gameStore = useGameStore();
 
@@ -14,7 +22,11 @@ const showPopup = () => {
 
 const confirm = () => {
   show.value = false;
-  gameStore.resetGame();
+  if (props.onConfirm) {
+    props.onConfirm();
+  } else {
+    gameStore.resetGame();
+  }
 };
 
 const cancel = () => {
@@ -28,14 +40,18 @@ defineExpose({ showPopup });
   <transition name="fade">
     <div v-if="show" class="confirmation-popup" role="dialog" aria-modal="true" aria-label="Confirmation popup">
       <div class="confirmation-popup__content">
-        <h2 class="confirmation-popup__title">{{ t('confirmResetPopup.title') }}</h2>
-        <p class="confirmation-popup__message">{{ t('confirmResetPopup.message') }}</p>
+        <h2 class="confirmation-popup__title">
+          {{ props.title ?? t('confirmResetPopup.title') }}
+        </h2>
+        <p class="confirmation-popup__message">
+          {{ props.message ?? t('confirmResetPopup.message') }}
+        </p>
         <div class="confirmation-popup__buttons">
           <button @click="confirm" class="confirmation-popup__button confirmation-popup__confirm">
-            {{ t('confirmResetPopup.confirm') }}
+            {{ props.confirmText ?? t('confirmResetPopup.confirm') }}
           </button>
           <button @click="cancel" class="confirmation-popup__button confirmation-popup__cancel">
-            {{ t('confirmResetPopup.cancel') }}
+            {{ props.cancelText ?? t('confirmResetPopup.cancel') }}
           </button>
         </div>
       </div>

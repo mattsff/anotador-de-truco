@@ -25,7 +25,6 @@ export const useGameStore = defineStore('game', {
       if (this.gameEnded) return
       if (this.team1Score + points <= this.pointsToWin) {
         this.team1Score += points
-        const teamsStore = useTeamsStore()
         const historyStore = useHistoryStore()
         historyStore.logPointChange({
           teamNumber: 1,
@@ -38,7 +37,6 @@ export const useGameStore = defineStore('game', {
       if (this.gameEnded) return
       if (this.team2Score + points <= this.pointsToWin) {
         this.team2Score += points
-        const teamsStore = useTeamsStore()
         const historyStore = useHistoryStore()
         historyStore.logPointChange({
           teamNumber: 2,
@@ -49,7 +47,6 @@ export const useGameStore = defineStore('game', {
     },
     decrementTeam1Score(points: number = 1) {
       this.team1Score = Math.max(0, this.team1Score - points)
-      const teamsStore = useTeamsStore()
       const historyStore = useHistoryStore()
       historyStore.logPointChange({
         teamNumber: 1,
@@ -58,7 +55,6 @@ export const useGameStore = defineStore('game', {
     },
     decrementTeam2Score(points: number = 1) {
       this.team2Score = Math.max(0, this.team2Score - points)
-      const teamsStore = useTeamsStore()
       const historyStore = useHistoryStore()
       historyStore.logPointChange({
         teamNumber: 2,

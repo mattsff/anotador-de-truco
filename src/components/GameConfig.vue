@@ -1,7 +1,8 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 import { useGameStore } from '@/stores';
 import { useI18n } from 'vue-i18n';
+import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue';
 import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config';
 
 const gameStore = useGameStore();
@@ -9,8 +10,21 @@ const { t } = useI18n();
 
 const pointsToWin = computed(() => gameStore.pointsToWin);
 
+const confirmPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
+const pendingPoints = ref<number | null>(null);
+
 const setPointsToWin = (points: number) => {
-  gameStore.setPointsToWin(points);
+  if (points !== gameStore.pointsToWin) {
+    pendingPoints.value = points;
+    confirmPopupRef.value?.showPopup();
+  }
+};
+
+const confirmChange = () => {
+  if (pendingPoints.value !== null) {
+    gameStore.setPointsToWin(pendingPoints.value);
+    pendingPoints.value = null;
+  }
 };
 
 const pointOptions = [
@@ -34,6 +48,14 @@ const pointOptions = [
         {{ option.label }}
       </button>
     </div>
+    <ConfirmResetPopup
+      ref="confirmPopupRef"
+      :onConfirm="confirmChange"
+      :title="t('gameConfig.confirmChangeTitle')"
+      :message="t('gameConfig.confirmChangeMessage')"
+      :confirmText="t('gameConfig.confirm')"
+      :cancelText="t('gameConfig.cancel')"
+    />
   </section>
 </template>
 

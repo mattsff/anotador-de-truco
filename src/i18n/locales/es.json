@@ -30,7 +30,11 @@
     "title": "Configuración del Juego",
     "pointsToWin": "Puntos para ganar",
     "fifteen": "15 Puntos",
-    "thirty": "30 Puntos"
+    "thirty": "30 Puntos",
+    "confirmChangeTitle": "Cambiar puntos para ganar",
+    "confirmChangeMessage": "Si cambias los puntos para ganar, se reiniciará el partido actual. ¿Deseas continuar?",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar"
   },
   "confirmResetPopup": {
     "title": "Reiniciar Partida",
