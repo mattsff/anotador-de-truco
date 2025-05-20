@@ -13,7 +13,7 @@ interface GameState {
 
 export const useGameStore = defineStore('game', {
   state: (): GameState => ({
-    pointsToWin: GAME_POINTS_15,
+    pointsToWin: GAME_POINTS_30,
     isMalas: true,
     gameEnded: false,
     winningTeam: null,
@@ -73,6 +73,7 @@ export const useGameStore = defineStore('game', {
       this.isMalas = !this.isMalas
     },
     checkWinCondition() {
+      this.checkMalasCondition()
       const teamsStore = useTeamsStore()
       if (
         this.team1Score >= this.pointsToWin ||
@@ -83,7 +84,10 @@ export const useGameStore = defineStore('game', {
           this.team1Score > this.team2Score
             ? teamsStore.team1Name
             : teamsStore.team2Name
-      } else if (
+      }
+    },
+    checkMalasCondition() {
+      if (
         this.pointsToWin === GAME_POINTS_30 &&
         this.isMalas &&
         this.team1Score >= 15 &&
