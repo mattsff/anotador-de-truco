@@ -93,22 +93,23 @@ const getDisplayData = (score: number) => {
 
   &__team {
     display: flex;
-    flex: 1;
     flex-direction: column;
     align-items: center;
     background-color: var(--color-surface-default);
     padding: var(--spacing-sm);
     border-radius: var(--radius-md);
+    flex: 1 1 0;
+    min-width: 0;
   }
 }
 
 .scoreboard__team-name {
-  display: inline-flex; // Cambia a inline-flex para que el bloque se centre como texto
+  display: flex; // Cambia a inline-flex para que el bloque se centre como texto
   white-space: nowrap;
-  overflow: hidden;
-  font-size: var(--font-size-lg);
+  font-size: var(--font-size-md);
   margin-bottom: var(--spacing-sm);
   align-items: center;
+  font-weight: 700;
   justify-content: center;
   width: 100%;
 

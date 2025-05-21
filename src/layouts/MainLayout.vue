@@ -71,12 +71,12 @@ const closeMenu = () => {
 
 <style scoped lang="scss">
 .main-layout {
+  margin: 0;
   display: flex;
-  min-height: 100dvh;
+  min-height: 100vh;
+  height: 100vh;
   width: 100%;
   background: var(--color-background-inverse);
-  padding: env(safe-area-inset-top) env(safe-area-inset-right)
-    env(safe-area-inset-bottom) env(safe-area-inset-left);
 
   &__sidebar {
     background: var(--color-surface-inverse);
@@ -84,7 +84,7 @@ const closeMenu = () => {
     position: fixed;
     top: 0;
     left: -261px;
-    height: 100vh;
+    height: 100%;
     z-index: 800;
     box-shadow: 2px 0 16px 0 rgba(0, 0, 0, 0.45);
     border-right: 1px solid var(--color-border-strong);
@@ -99,7 +99,7 @@ const closeMenu = () => {
       left: 0;
       box-shadow: none;
       width: 260px;
-      height: 100vh;
+      height: 100%;
     }
   }
 
@@ -107,8 +107,8 @@ const closeMenu = () => {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     background: rgba(20, 20, 30, 0.7);
     z-index: 700;
 
@@ -120,12 +120,11 @@ const closeMenu = () => {
   &__main {
     display: flex;
     flex-direction: column;
-    flex: 1;
-    min-width: 0;
-    margin-left: 0;
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
     background: var(--color-background-inverse);
-    min-height: 100vh;
-    height: auto;
   }
 
   &__header {

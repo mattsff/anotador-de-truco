@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { ref, defineExpose } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useGameStore } from '@/stores';
+import { ref, defineExpose } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useGameStore } from '@/stores'
 
 const props = defineProps<{
   onConfirm?: () => void
@@ -9,36 +9,42 @@ const props = defineProps<{
   message?: string
   confirmText?: string
   cancelText?: string
-}>();
+}>()
 
-const { t } = useI18n();
-const gameStore = useGameStore();
+const { t } = useI18n()
+const gameStore = useGameStore()
 
-const show = ref(false);
+const show = ref(false)
 
 const showPopup = () => {
-  show.value = true;
-};
+  show.value = true
+}
 
 const confirm = () => {
-  show.value = false;
+  show.value = false
   if (props.onConfirm) {
-    props.onConfirm();
+    props.onConfirm()
   } else {
-    gameStore.resetGame();
+    gameStore.resetGame()
   }
-};
+}
 
 const cancel = () => {
-  show.value = false;
-};
+  show.value = false
+}
 
-defineExpose({ showPopup });
+defineExpose({ showPopup })
 </script>
 
 <template>
   <transition name="fade">
-    <div v-if="show" class="confirmation-popup" role="dialog" aria-modal="true" aria-label="Confirmation popup">
+    <div
+      v-if="show"
+      class="confirmation-popup"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Confirmation popup"
+    >
       <div class="confirmation-popup__content">
         <h2 class="confirmation-popup__title">
           {{ props.title ?? t('confirmResetPopup.title') }}
@@ -47,10 +53,16 @@ defineExpose({ showPopup });
           {{ props.message ?? t('confirmResetPopup.message') }}
         </p>
         <div class="confirmation-popup__buttons">
-          <button @click="confirm" class="confirmation-popup__button confirmation-popup__confirm">
+          <button
+            @click="confirm"
+            class="confirmation-popup__button confirmation-popup__confirm"
+          >
             {{ props.confirmText ?? t('confirmResetPopup.confirm') }}
           </button>
-          <button @click="cancel" class="confirmation-popup__button confirmation-popup__cancel">
+          <button
+            @click="cancel"
+            class="confirmation-popup__button confirmation-popup__cancel"
+          >
             {{ props.cancelText ?? t('confirmResetPopup.cancel') }}
           </button>
         </div>
@@ -81,8 +93,8 @@ defineExpose({ showPopup });
     border-radius: var(--radius-lg);
     background-color: var(--color-surface-default);
     box-shadow: 0 var(--spacing-sm) var(--spacing-lg) rgba(0, 0, 0, 0.2);
-    width: 320px;
-    max-width: 90%;
+    width: 90%;
+    max-width: 320px;
     margin: 10%;
   }
 
@@ -114,7 +126,9 @@ defineExpose({ showPopup });
     border-radius: var(--radius-sm);
     font-size: var(--font-size-md);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
     text-align: center;
   }
 

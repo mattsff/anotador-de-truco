@@ -52,17 +52,4 @@ html,
 body {
   margin: 0;
   padding: 0;
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background: var(--color-background-inverse);
-}
-
-#app {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  min-height: 100vh;
-  height: auto;
-  background: var(--color-background-inverse);
 }

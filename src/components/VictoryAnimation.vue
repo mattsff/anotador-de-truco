@@ -1,32 +1,37 @@
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useGameStore } from '@/stores';
+import { computed } from 'vue'
+import { useI18n } from 'vue-i18n'
+import { useGameStore } from '@/stores'
 
-const gameStore = useGameStore();
-const { t } = useI18n();
+const gameStore = useGameStore()
+const { t } = useI18n()
 
 const animationText = computed(() =>
   t('victoryAnimation.title', { teamName: gameStore.winningTeam })
-);
+)
 
 const cancelWin = () => {
-  gameStore.cancelWin();
-};
+  gameStore.cancelWin()
+}
 
 const newGame = () => {
-  gameStore.resetGame();
-};
+  gameStore.resetGame()
+}
 </script>
 
 <template>
-  <div v-if="gameStore.gameEnded" class="victory-animation" role="alert" aria-live="assertive">
+  <div
+    v-if="gameStore.gameEnded"
+    class="victory-animation"
+    role="alert"
+    aria-live="assertive"
+  >
     <div class="victory-animation__container">
       <h2 class="victory-animation__title">
         {{ animationText }}
       </h2>
       <div class="victory-animation__buttons">
-         <button @click="newGame" class="victory-animation__primary-button">
+        <button @click="newGame" class="victory-animation__primary-button">
           {{ t('victoryAnimation.newGame') }}
         </button>
         <button @click="cancelWin" class="victory-animation__secondary-button">
@@ -43,8 +48,8 @@ const newGame = () => {
   align-items: center;
   justify-content: center;
   text-align: center;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   position: fixed;
   top: 0;
   left: 0;
@@ -53,7 +58,7 @@ const newGame = () => {
   backdrop-filter: blur(3px);
 
   &__container {
-    width: 80vw;
+    width: 80%;
   }
 
   &__title {
@@ -84,7 +89,7 @@ const newGame = () => {
     border: none;
     cursor: pointer;
     background-color: var(--color-primary-default);
-    color: var(--color-surface-default);
+    color: var(--color-text-inverse);
     transition: background-color 0.2s ease;
 
     &:hover {
