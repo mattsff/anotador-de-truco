@@ -23,6 +23,7 @@ a:hover {
 }
 
 button {
+  touch-action: manipulation;
   border-radius: 8px;
   border: 1px solid var(--color-border-strong);
   padding: 0.6em 1.2em;

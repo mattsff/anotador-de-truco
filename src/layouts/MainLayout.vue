@@ -81,7 +81,7 @@ const closeMenu = () => {
     width: 260px;
     position: fixed;
     top: 0;
-    left: -260px;
+    left: -261px;
     height: 100vh;
     z-index: 800;
     box-shadow: 2px 0 16px 0 rgba(0, 0, 0, 0.45);
@@ -140,7 +140,7 @@ const closeMenu = () => {
   &__menu-button {
     background: none;
     border: none;
-    font-size: 28px;
+    font-size: var(--font-size-md);
     cursor: pointer;
     color: var(--color-text-inverse);
     margin-right: 10px;
@@ -152,7 +152,7 @@ const closeMenu = () => {
   }
 
   &__title {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: bold;
     margin: 0;
     letter-spacing: 1px;

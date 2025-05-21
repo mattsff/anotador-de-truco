@@ -71,18 +71,14 @@ const showResetConfirmation = () => {
   &__header {
     display: flex;
     align-items: center;
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     background-color: var(--color-primary-default);
     color: var(--color-primary-text);
   }
 
   &__close-button {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
+    font-size: var(--font-size-md);
     margin-right: 10px;
-    color: inherit;
 
     &:hover {
       color: var(--color-secondary-default);
@@ -94,7 +90,7 @@ const showResetConfirmation = () => {
   }
 
   &__title {
-    font-size: var(--font-size-lg);
+    font-size: var(--font-size-md);
     font-weight: bold;
     margin: 0;
   }
