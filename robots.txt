@@ -1,0 +1,6 @@
+# Allow all crawlers access to everything
+User-agent: *
+Disallow:
+
+# Optional: Point to your sitemap if you have one
+# Sitemap: https://tusitio.com/sitemap.xml

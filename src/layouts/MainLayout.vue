@@ -72,7 +72,7 @@ const closeMenu = () => {
 <style scoped lang="scss">
 .main-layout {
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   width: 100%;
   background: var(--color-background-inverse);
 
@@ -122,6 +122,8 @@ const closeMenu = () => {
     min-width: 0;
     margin-left: 0;
     background: var(--color-background-inverse);
+    min-height: 100vh;
+    height: auto;
   }
 
   &__header {
