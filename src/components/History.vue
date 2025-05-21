@@ -47,7 +47,10 @@ const teamNames = computed(() => ({
   border-radius: var(--radius-lg);
   background-color: var(--color-surface-default);
   margin-bottom: var(--spacing-lg);
-  max-width: 400px;
+  max-width: 300px;
+  width: 100%;
+  max-height: 70vh;
+  overflow: hidden;
 
   &__title {
     font-size: var(--font-size-xl);
@@ -70,6 +73,10 @@ const teamNames = computed(() => ({
     padding: 0;
     margin: 0;
     gap: var(--spacing-sm);
+    overflow-y: auto;
+    max-height: 55vh;
+    padding-bottom: var(--spacing-xl); 
+    min-width: 0;
   }
 
   &__record {
@@ -79,6 +86,7 @@ const teamNames = computed(() => ({
     padding-bottom: var(--spacing-xs);
     border-bottom: 1px solid var(--color-border-default);
     font-size: var(--font-size-base);
+    padding-right: var(--spacing-md);
     &:last-child {
       border-bottom: none;
     }

@@ -48,7 +48,7 @@ const newGame = () => {
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1100;
   background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.9));
   backdrop-filter: blur(3px);
 

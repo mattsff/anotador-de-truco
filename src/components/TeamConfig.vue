@@ -28,7 +28,7 @@ const handleSaveNames = () => {
             type="text"
             v-model="team1Name"
             class="team-config__input"
-            maxlength="8"
+            maxlength="12"
           />
         </div>
 
@@ -39,7 +39,7 @@ const handleSaveNames = () => {
             type="text"
             v-model="team2Name"
             class="team-config__input"
-            maxlength="8"
+            maxlength="12"
           />
         </div>
 
@@ -97,6 +97,7 @@ const handleSaveNames = () => {
     border: 1px solid var(--color-border-default);
     border-radius: var(--radius-sm);
     font-size: var(--font-size-md);
+    background-color: var(--color-surface-inverse);
   }
 
   &__save-button {
@@ -104,7 +105,6 @@ const handleSaveNames = () => {
     width: 100%;
     padding: var(--spacing-sm);
     background-color: var(--color-primary-default);
-    color: var(--color-surface-default);
     border: none;
     border-radius: var(--radius-sm);
     font-size: var(--font-size-md);

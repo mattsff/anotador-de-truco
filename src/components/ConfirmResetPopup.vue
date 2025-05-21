@@ -115,7 +115,6 @@ defineExpose({ showPopup });
     font-size: var(--font-size-md);
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-    color: var(--color-surface-default);
     text-align: center;
   }
 

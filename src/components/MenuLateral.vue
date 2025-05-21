@@ -16,12 +16,14 @@ const menuItems = [
   { to: '/game-config', label: t('menu.gameConfig') },
 ]
 
-const confirmResetPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
+const confirmResetPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(
+  null
+)
 
 const showResetConfirmation = () => {
-  confirmResetPopupRef.value?.showPopup();
-  props.onClose();
-};
+  confirmResetPopupRef.value?.showPopup()
+  props.onClose()
+}
 </script>
 
 <template>
@@ -50,18 +52,13 @@ const showResetConfirmation = () => {
       </ul>
     </nav>
     <div class="menu-lateral__actions">
-      <button
-        class="menu-lateral__reset-button"
-        @click="showResetConfirmation"
-      >
+      <button class="menu-lateral__reset-button" @click="showResetConfirmation">
         {{ t('menu.reset') }}
       </button>
-      
     </div>
   </div>
 
-
-<ConfirmResetPopup ref="confirmResetPopupRef" />
+  <ConfirmResetPopup ref="confirmResetPopupRef" />
 </template>
 
 <style scoped lang="scss">
@@ -114,7 +111,7 @@ const showResetConfirmation = () => {
   }
 
   &__item {
-    border-bottom: 1px solid var(--color-border-light);
+    border-bottom: 0.5px solid var(--color-border-light);
   }
 
   &__link {
@@ -126,7 +123,7 @@ const showResetConfirmation = () => {
 
     &:hover,
     &:focus {
-      background-color: var(--color-primary-default);
+      background-color: var(--color-primary-hover);
       color: var(--color-primary-text);
       font-weight: bold;
     }
@@ -134,14 +131,13 @@ const showResetConfirmation = () => {
 
   &__actions {
     padding: var(--spacing-md);
-    border-top: 1px solid var(--color-border-light);
   }
 
   &__reset-button {
     width: 100%;
     padding: var(--spacing-md);
     background-color: var(--color-danger-default);
-    color: var(--color-surface-default);
+    color: var(--color-danger-text);
     border: none;
     font-size: var(--font-size-md);
     cursor: pointer;

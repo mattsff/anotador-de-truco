@@ -1,25 +1,33 @@
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { buildGroups } from '@/utils/game';
+import { computed } from 'vue'
+import { buildGroups } from '@/utils/game'
 
 const props = defineProps<{
-  points: number;
-  label?: string | null;
-  labelColor?: string;
-}>();
+  points: number
+  label?: string | null
+  labelColor?: string
+}>()
 
 const groups = computed(() => {
-  const safePoints = Math.max(props.points, 0);
-  return buildGroups(safePoints);
-});
+  const safePoints = Math.max(props.points, 0)
+  return buildGroups(safePoints)
+})
 </script>
 
 <template>
   <div class="sticks-section">
-    <div v-if="label" class="sticks-section__label" :style="{ color: labelColor ?? '#ddd' }">
+    <div
+      v-if="label"
+      class="sticks-section__label"
+      :style="{ color: labelColor ?? '#ddd' }"
+    >
       {{ label }}
     </div>
-    <div v-for="(sticks, groupIndex) in groups" :key="`group-${groupIndex}`" class="group">
+    <div
+      v-for="(sticks, groupIndex) in groups"
+      :key="`group-${groupIndex}`"
+      class="group"
+    >
       <div
         v-for="n in sticks"
         :key="`stick-${groupIndex}-${n}`"
@@ -36,7 +44,7 @@ const groups = computed(() => {
   flex-direction: column;
   align-items: center;
   gap: var(--spacing-lg);
-  min-height: 320px;
+  height: 100%;
 }
 
 .sticks-section__label {

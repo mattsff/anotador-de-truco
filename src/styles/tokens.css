@@ -4,16 +4,16 @@
 
 :root {
   --color-background-default: #181c24;
-  --color-background-alt: #232a34;
+  --color-background-alt: #343d4e;
   --color-background-inverse: #181c24;
   --color-surface-default: #232a34;
   --color-surface-alt: #232a34;
-  --color-surface-inverse: #232a34;
+  --color-surface-inverse: #343d4e;
   --color-text-base: #bfc9db;
   --color-text-muted: #7f8c8d;
   --color-text-inverse: #ffffff;
-  --color-primary-default: #4f8cff;
-  --color-primary-hover: #3761b6;
+  --color-primary-default: #4576d0;
+  --color-primary-hover: #4576d077;
   --color-primary-text: #ffffff;
   --color-secondary-default: #ffb74d;
   --color-secondary-hover: #ffa726;
@@ -27,9 +27,9 @@
   --color-danger-default: #e53935;
   --color-danger-hover: #b71c1c;
   --color-danger-text: #ffffff;
-  --color-border-light: #232a34;
-  --color-border-default: #232a34;
-  --color-border-strong: #2c2c2c;
+  --color-border-light: #cccccc4d;
+  --color-border-default: #ffffff;
+  --color-border-strong: #dddddd;
   --color-custom-title: #ffffff;
   --color-custom-team-name: #bfc9db;
   --color-custom-team-score: #4f8cff;

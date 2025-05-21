@@ -1,29 +1,29 @@
 <script setup lang="ts">
-import {  useGameStore } from '@/stores';
-import { useI18n } from 'vue-i18n';
+import { useGameStore } from '@/stores'
+import { useI18n } from 'vue-i18n'
 
 const props = defineProps<{
-  teamNumber: 1 | 2;
-}>();
+  teamNumber: 1 | 2
+}>()
 
-const gameStore = useGameStore();
-const { t } = useI18n();
+const gameStore = useGameStore()
+const { t } = useI18n()
 
 const addPoints = () => {
   if (props.teamNumber === 1) {
-    gameStore.incrementTeam1Score();
+    gameStore.incrementTeam1Score()
   } else {
-    gameStore.incrementTeam2Score();
+    gameStore.incrementTeam2Score()
   }
-};
+}
 
 const subtractPoints = () => {
   if (props.teamNumber === 1) {
-    gameStore.decrementTeam1Score();
+    gameStore.decrementTeam1Score()
   } else {
-    gameStore.decrementTeam2Score();
+    gameStore.decrementTeam2Score()
   }
-};
+}
 </script>
 
 <template>
@@ -31,7 +31,6 @@ const subtractPoints = () => {
     <button
       @click="subtractPoints"
       class="point-controls__button point-controls__button--subtract"
-  
     >
       {{ t('pointControls.subtract') }}
     </button>
@@ -47,18 +46,19 @@ const subtractPoints = () => {
 <style scoped lang="scss">
 .point-controls {
   display: flex;
-  gap: var(--spacing-sm);
+  gap: var(--spacing-md);
   margin-top: var(--spacing-sm);
 
   &__button {
-    padding: var(--spacing-sm) var(--spacing-md);
+    padding: 8px 20px;
     border: none;
     border-radius: var(--radius-sm);
     font-size: var(--font-size-md);
     font-weight: bold;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.1s ease;
-    color: var(--color-surface-default);
+    transition:
+      background-color 0.2s ease,
+      transform 0.1s ease;
 
     &:active {
       transform: scale(0.95);

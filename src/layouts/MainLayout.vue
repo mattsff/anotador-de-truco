@@ -1,31 +1,19 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useI18n } from 'vue-i18n';
-import { useGameStore } from '@/stores';
-import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue';
-import MenuLateral from '@/components/MenuLateral.vue';
-import VictoryAnimation from '@/components/VictoryAnimation.vue';
+import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import MenuLateral from '@/components/MenuLateral.vue'
 
-const gameStore = useGameStore();
-const { t } = useI18n();
+const { t } = useI18n()
 
-const confirmResetPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
-const isMenuOpen = ref(false);
-
-const showResetConfirmation = () => {
-  confirmResetPopupRef.value?.showPopup(() => {
-    gameStore.resetGame();
-    isMenuOpen.value = false;
-  });
-};
+const isMenuOpen = ref(false)
 
 const toggleMenu = () => {
-  isMenuOpen.value = !isMenuOpen.value;
-};
+  isMenuOpen.value = !isMenuOpen.value
+}
 
 const closeMenu = () => {
-  isMenuOpen.value = false;
-};
+  isMenuOpen.value = false
+}
 </script>
 
 <template>
@@ -59,18 +47,18 @@ const closeMenu = () => {
 
       <main class="main-layout__content">
         <slot />
-        <VictoryAnimation
-          v-if="gameStore.gameEnded"
-          :winningTeam="gameStore.winningTeam"
-        />
       </main>
 
       <footer class="main-layout__footer">
         <span>
-            Desarrollado por
-            <a href="https://www.linkedin.com/in/sieffmatias/" target="_blank" rel="noopener">
-              Matías Sieff
-            </a>
+          Desarrollado por
+          <a
+            href="https://www.linkedin.com/in/sieffmatias/"
+            target="_blank"
+            rel="noopener"
+          >
+            Matías Sieff
+          </a>
           |
           <a href="https://github.com/mattsff" target="_blank" rel="noopener">
             GitHub
@@ -78,8 +66,6 @@ const closeMenu = () => {
         </span>
       </footer>
     </div>
-
-    <ConfirmResetPopup ref="confirmResetPopupRef" />
   </div>
 </template>
 
@@ -88,17 +74,19 @@ const closeMenu = () => {
   display: flex;
   height: 100vh;
   width: 100%;
+  background: var(--color-background-inverse);
 
   &__sidebar {
-    background-color: #fff;
-    width: 250px;
+    background: var(--color-surface-inverse);
+    width: 260px;
     position: fixed;
     top: 0;
-    left: -250px;
-    height: 100%;
+    left: -260px;
+    height: 100vh;
     z-index: 800;
-    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-    transition: left 0.3s ease-in-out;
+    box-shadow: 2px 0 16px 0 rgba(0, 0, 0, 0.45);
+    border-right: 1px solid var(--color-border-strong);
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
     &--open {
       left: 0;
@@ -108,7 +96,8 @@ const closeMenu = () => {
       position: static;
       left: 0;
       box-shadow: none;
-      width: 250px;
+      width: 260px;
+      height: 100vh;
     }
   }
 
@@ -118,7 +107,7 @@ const closeMenu = () => {
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(20, 20, 30, 0.7);
     z-index: 700;
 
     @media (min-width: 768px) {
@@ -130,16 +119,18 @@ const closeMenu = () => {
     display: flex;
     flex-direction: column;
     flex: 1;
+    min-width: 0;
     margin-left: 0;
-    background-color: #f5f5f5;
+    background: var(--color-background-inverse);
   }
 
   &__header {
     display: flex;
     align-items: center;
-    padding: 10px 20px;
-    background-color: #2d4263;
-    color: white;
+    padding: var(--spacing-sm) var(--spacing-sm);
+    background: var(--color-surface-inverse);
+    color: var(--color-text-inverse);
+    border-bottom: 1px solid var(--color-border-light);
 
     @media (min-width: 768px) {
       display: none;
@@ -149,39 +140,52 @@ const closeMenu = () => {
   &__menu-button {
     background: none;
     border: none;
-    font-size: 24px;
+    font-size: 28px;
     cursor: pointer;
-    color: white;
+    color: var(--color-text-inverse);
+    margin-right: 10px;
+    transition: color 0.2s;
+
+    &:hover {
+      color: var(--color-primary-default);
+    }
   }
 
   &__title {
-    margin-left: 10px;
-    font-size: 20px;
+    font-size: var(--font-size-lg);
     font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+    color: var(--color-text-inverse);
   }
 
   &__content {
     flex: 1;
-    padding: 20px;
+    padding: var(--spacing-xl) var(--spacing-md);
     overflow-y: auto;
+    background: var(--color-background-inverse);
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   &__footer {
-    background-color: #2d4263;
-    border-top: 3px solid #ecdbba;
+    background: var(--color-surface-inverse);
+    border-top: 1px solid var(--color-border-light);
     display: flex;
     flex-direction: row;
     justify-content: center;
-    padding: 10px;
-    font-size: 0.9rem;
-    color: white;
+    padding: var(--spacing-md) 0;
+    font-size: 0.95rem;
+    color: var(--color-text-inverse);
 
     a {
-      color: #ecdbba;
+      color: var(--color-primary-default);
       text-decoration: none;
 
       &:hover {
         text-decoration: underline;
+        color: var(--color-primary-hover);
       }
     }
   }

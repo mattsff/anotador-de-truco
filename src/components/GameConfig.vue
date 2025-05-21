@@ -97,12 +97,12 @@ const pointOptions = [
 
     &--active {
       background-color: var(--color-primary-default);
-      color: var(--color-surface-default);
+      color: var(--color-text-inverse);
     }
 
     &:hover {
       background-color: var(--color-primary-hover);
-      color: var(--color-surface-default);
+      color: var(--color-text-inverse);
     }
   }
 }

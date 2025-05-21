@@ -2,13 +2,13 @@
   "color": {
     "background": {
       "default": { "value": "#181c24" },
-      "alt": { "value": "#232a34" },
+      "alt": { "value": "#343d4e" },
       "inverse": { "value": "#181c24" }
     },
     "surface": {
       "default": { "value": "#232a34" },
       "alt": { "value": "#232a34" },
-      "inverse": { "value": "#232a34" }
+      "inverse": { "value": "#343d4e" }
     },
     "text": {
       "base": { "value": "#bfc9db" },
@@ -16,8 +16,8 @@
       "inverse": { "value": "#ffffff" }
     },
     "primary": {
-      "default": { "value": "#4f8cff" },
-      "hover": { "value": "#3761b6" },
+      "default": { "value": "#4576d0" },
+      "hover": { "value": "#4576d077" },
       "text": { "value": "#ffffff" }
     },
     "secondary": {
@@ -41,9 +41,9 @@
       "text": { "value": "#ffffff" }
     },
     "border": {
-      "light": { "value": "#232a34" },
-      "default": { "value": "#232a34" },
-      "strong": { "value": "#2c2c2c" }
+      "light": { "value": "#cccccc4d" },
+      "default": { "value": "#ffffff" },
+      "strong": { "value": "#dddddd" }
     },
     "custom": {
       "title": { "value": "#ffffff" },
