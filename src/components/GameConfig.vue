@@ -1,36 +1,36 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue';
-import { useGameStore } from '@/stores';
-import { useI18n } from 'vue-i18n';
-import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue';
-import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config';
+import { computed, ref } from 'vue'
+import { useGameStore } from '@/stores'
+import { useI18n } from 'vue-i18n'
+import ConfirmResetPopup from '@/components/ConfirmResetPopup.vue'
+import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config'
 
-const gameStore = useGameStore();
-const { t } = useI18n();
+const gameStore = useGameStore()
+const { t } = useI18n()
 
-const pointsToWin = computed(() => gameStore.pointsToWin);
+const pointsToWin = computed(() => gameStore.pointsToWin)
 
-const confirmPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null);
-const pendingPoints = ref<number | null>(null);
+const confirmPopupRef = ref<InstanceType<typeof ConfirmResetPopup> | null>(null)
+const pendingPoints = ref<number | null>(null)
 
 const setPointsToWin = (points: number) => {
   if (points !== gameStore.pointsToWin) {
-    pendingPoints.value = points;
-    confirmPopupRef.value?.showPopup();
+    pendingPoints.value = points
+    confirmPopupRef.value?.showPopup()
   }
-};
+}
 
 const confirmChange = () => {
   if (pendingPoints.value !== null) {
-    gameStore.setPointsToWin(pendingPoints.value);
-    pendingPoints.value = null;
+    gameStore.setPointsToWin(pendingPoints.value)
+    pendingPoints.value = null
   }
-};
+}
 
 const pointOptions = [
   { label: t('gameConfig.fifteen'), value: GAME_POINTS_15 },
   { label: t('gameConfig.thirty'), value: GAME_POINTS_30 },
-];
+]
 </script>
 
 <template>
@@ -68,7 +68,6 @@ const pointOptions = [
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   background-color: var(--color-surface-default);
-  margin-bottom: var(--spacing-lg);
   max-width: 400px;
 
   &__title {
@@ -91,7 +90,9 @@ const pointOptions = [
     border-radius: var(--radius-sm);
     font-size: var(--font-size-md);
     cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
     background-color: transparent;
     color: var(--color-primary-default);
 

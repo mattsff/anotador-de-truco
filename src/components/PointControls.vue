@@ -47,7 +47,6 @@ const subtractPoints = () => {
 .point-controls {
   display: flex;
   gap: var(--spacing-md);
-  margin-top: var(--spacing-sm);
 
   &__button {
     padding: 8px 20px;

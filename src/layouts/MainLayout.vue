@@ -73,8 +73,8 @@ const closeMenu = () => {
 .main-layout {
   margin: 0;
   display: flex;
-  min-height: 100vh;
-  height: 100vh;
+  min-height: 100dvh;
+  height: 100dvh;
   width: 100%;
   background: var(--color-background-inverse);
 

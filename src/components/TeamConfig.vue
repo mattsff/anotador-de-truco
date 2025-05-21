@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { ref } from 'vue';
-import { useTeamsStore } from '@/stores';
-import { useI18n } from 'vue-i18n';
+import { ref } from 'vue'
+import { useTeamsStore } from '@/stores'
+import { useI18n } from 'vue-i18n'
 
-const teamsStore = useTeamsStore();
-const { t } = useI18n();
+const teamsStore = useTeamsStore()
+const { t } = useI18n()
 
-const team1Name = ref(teamsStore.team1Name);
-const team2Name = ref(teamsStore.team2Name);
+const team1Name = ref(teamsStore.team1Name)
+const team2Name = ref(teamsStore.team2Name)
 
 const handleSaveNames = () => {
-  teamsStore.setTeam1Name(team1Name.value.trim());
-  teamsStore.setTeam2Name(team2Name.value.trim());
-};
+  teamsStore.setTeam1Name(team1Name.value.trim())
+  teamsStore.setTeam2Name(team2Name.value.trim())
+}
 </script>
 
 <template>
@@ -22,7 +22,9 @@ const handleSaveNames = () => {
     <form class="team-config__form" @submit.prevent="handleSaveNames">
       <fieldset class="team-config__fieldset">
         <div class="team-config__input-group">
-          <label for="team1-name" class="team-config__label">{{ t('teamConfig.teamName') }} 1:</label>
+          <label for="team1-name" class="team-config__label"
+            >{{ t('teamConfig.teamName') }} 1:</label
+          >
           <input
             id="team1-name"
             type="text"
@@ -33,7 +35,9 @@ const handleSaveNames = () => {
         </div>
 
         <div class="team-config__input-group">
-          <label for="team2-name" class="team-config__label">{{ t('teamConfig.teamName') }} 2:</label>
+          <label for="team2-name" class="team-config__label"
+            >{{ t('teamConfig.teamName') }} 2:</label
+          >
           <input
             id="team2-name"
             type="text"
@@ -60,7 +64,6 @@ const handleSaveNames = () => {
   padding: var(--spacing-lg);
   border-radius: var(--radius-lg);
   background-color: var(--color-surface-default);
-  margin-bottom: var(--spacing-lg);
   max-width: 400px;
 
   &__title {
