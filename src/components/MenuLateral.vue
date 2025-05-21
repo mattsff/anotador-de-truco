@@ -77,6 +77,8 @@ const showResetConfirmation = () => {
   }
 
   &__close-button {
+    background: none;
+    border: none;
     font-size: var(--font-size-md);
     margin-right: 10px;
 

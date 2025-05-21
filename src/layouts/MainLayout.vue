@@ -72,9 +72,11 @@ const closeMenu = () => {
 <style scoped lang="scss">
 .main-layout {
   display: flex;
-  min-height: 100vh;
+  min-height: 100dvh;
   width: 100%;
   background: var(--color-background-inverse);
+  padding: env(safe-area-inset-top) env(safe-area-inset-right)
+    env(safe-area-inset-bottom) env(safe-area-inset-left);
 
   &__sidebar {
     background: var(--color-surface-inverse);
