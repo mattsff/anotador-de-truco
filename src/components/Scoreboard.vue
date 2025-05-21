@@ -3,7 +3,7 @@ import { computed } from 'vue'
 import { useTeamsStore, useGameStore } from '@/stores'
 import SticksSection from '@/components/SticksSection.vue'
 import PointControls from '@/components/PointControls.vue'
-import { GAME_POINTS_15, GAME_POINTS_30 } from '@/config'
+import { GAME_POINTS_15 } from '@/config'
 import { storeToRefs } from 'pinia'
 import VictoryAnimation from '@/components/VictoryAnimation.vue'
 

@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "vite",
     "build:tokens": "npx style-dictionary build --config style-dictionary.config.js",
-    "build": "vue-tsc -b && build:tokens && vite build",
+    "build": "vue-tsc -b && vite build",
     "preview": "vite preview",
     "test:unit": "vitest",
     "lint": "eslint --ext .js,.ts,.vue src"
