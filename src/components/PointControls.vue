@@ -9,7 +9,13 @@ const props = defineProps<{
 const gameStore = useGameStore()
 const { t } = useI18n()
 
+const playSound = (src: string) => {
+  const audio = new Audio(src)
+  audio.play()
+}
+
 const addPoints = () => {
+  playSound('/sounds/add.mp3')
   if (props.teamNumber === 1) {
     gameStore.incrementTeam1Score()
   } else {
@@ -18,6 +24,7 @@ const addPoints = () => {
 }
 
 const subtractPoints = () => {
+  playSound('/sounds/subtract.mp3')
   if (props.teamNumber === 1) {
     gameStore.decrementTeam1Score()
   } else {

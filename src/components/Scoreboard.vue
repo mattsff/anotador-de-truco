@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed } from 'vue'
+import { computed, watch } from 'vue'
 import { useTeamsStore, useGameStore } from '@/stores'
 import SticksSection from '@/components/SticksSection.vue'
 import PointControls from '@/components/PointControls.vue'
@@ -29,6 +29,18 @@ const getDisplayData = (score: number) => {
     labelColor: 'green',
   }
 }
+
+const playVictorySound = () => {
+  const audio = new Audio('/sounds/victory.mp3')
+  audio.play()
+}
+
+watch(
+  () => gameStore.gameEnded,
+  (ended) => {
+    if (ended) playVictorySound()
+  }
+)
 </script>
 
 <template>
