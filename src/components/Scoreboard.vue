@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { computed, watch } from 'vue'
+import { computed, watch, onMounted } from 'vue'
 import { useTeamsStore, useGameStore } from '@/stores'
 import SticksSection from '@/components/SticksSection.vue'
 import PointControls from '@/components/PointControls.vue'
@@ -30,9 +30,16 @@ const getDisplayData = (score: number) => {
   }
 }
 
+let victoryAudio: HTMLAudioElement
+
+onMounted(() => {
+  victoryAudio = new Audio('/sounds/victory.mp3')
+})
+
 const playVictorySound = () => {
-  const audio = new Audio('/sounds/victory.mp3')
-  audio.play()
+  if (!victoryAudio) return
+  victoryAudio.currentTime = 0
+  victoryAudio.play()
 }
 
 watch(

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useGameStore } from '@/stores'
 import { useI18n } from 'vue-i18n'
+import { onMounted } from 'vue'
 
 const props = defineProps<{
   teamNumber: 1 | 2
@@ -9,13 +10,22 @@ const props = defineProps<{
 const gameStore = useGameStore()
 const { t } = useI18n()
 
-const playSound = (src: string) => {
-  const audio = new Audio(src)
+let addAudio: HTMLAudioElement
+let subtractAudio: HTMLAudioElement
+
+onMounted(() => {
+  addAudio = new Audio('/sounds/add.mp3')
+  subtractAudio = new Audio('/sounds/subtract.mp3')
+})
+
+const playSound = (audio: HTMLAudioElement) => {
+  if (!audio) return
+  audio.currentTime = 0
   audio.play()
 }
 
 const addPoints = () => {
-  playSound('/sounds/add.mp3')
+  playSound(addAudio)
   if (props.teamNumber === 1) {
     gameStore.incrementTeam1Score()
   } else {
@@ -24,7 +34,7 @@ const addPoints = () => {
 }
 
 const subtractPoints = () => {
-  playSound('/sounds/subtract.mp3')
+  playSound(subtractAudio)
   if (props.teamNumber === 1) {
     gameStore.decrementTeam1Score()
   } else {
