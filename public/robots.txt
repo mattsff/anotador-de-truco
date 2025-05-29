@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://anotador-de-truco.pages.dev/sitemap.xml
